@@ -6,6 +6,7 @@ import SportsList from "../../components/sportslist/SportsList";
 import NavBar from "../../components/navbar/Navbar";
 // Styling
 import "./HomePage.scss";
+import FilterBar from "../../components/filterbar/FilterBar";
 
 const HomePage = (props) => {
   console.log(props);
@@ -25,7 +26,7 @@ const HomePage = (props) => {
     <Fragment>
       <h1>Home Page</h1>
       <NavBar />
-
+      <FilterBar countries={props.countries} />
       <SportsList leagues={props.leagues} />
     </Fragment>
   );
