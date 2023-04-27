@@ -9,6 +9,10 @@ import DetailsPage from './pages/detailspage/DetailsPage';
 import './App.scss';
 
 function App() {
+
+  const {}
+
+
   return (
     <Fragment>
       <Routes>
