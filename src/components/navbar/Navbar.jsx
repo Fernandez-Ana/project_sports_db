@@ -7,13 +7,13 @@ import "./NavBar.scss";
 import logo from "../../assets/img/logo.svg";
 // import search from "../../assets/img/search.svg";
 
-const NavBar = () => {
-
-
+const NavBar = (props) => {
+	// console.log(props);
 	// const handleChange = (event) => {
-	// 	// props.setSport(event.target.value)
+	// 	// props.(event.target.value)
 	// 	console.log(event.target.value);
 	// };
+
 
 	return (
 		<Fragment>

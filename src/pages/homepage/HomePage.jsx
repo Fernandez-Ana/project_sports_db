@@ -11,6 +11,7 @@ import "./HomePage.scss";
 const HomePage = () => {
   const [leagues, setLeagues] = useState([]);
   const [countries, setCountries] = useState([]);
+  const [leagueSearch, setLeagueSearch] = useState('')
 
   console.log();
   useEffect(() => {
@@ -36,7 +37,7 @@ const HomePage = () => {
     return (
       <Fragment>
         <h1>Home Page</h1>
-        <NavBar />
+        <NavBar leagueSearch={leagueSearch} setLeagueSearch={setLeagueSearch} />
         <FilterBar leagues={leagues} countries={countries} />
         <SportsList leagues={leagues} countries={countries} />
       </Fragment>
