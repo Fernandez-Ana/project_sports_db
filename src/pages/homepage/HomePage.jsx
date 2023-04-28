@@ -22,6 +22,9 @@ const HomePage = () => {
       .then((countries) => setCountries(countries));
   }, []);
 
+  console.log(countries);
+  console.log(leagues);
+
   // Checking if object is empty for async fetch
   const isObjEmpty = (leagues) => {
     return Object.keys(leagues).length === 0;
@@ -34,7 +37,7 @@ const HomePage = () => {
       <Fragment>
         <h1>Home Page</h1>
         <NavBar />
-        <FilterBar />
+        <FilterBar leagues={leagues} countries={countries} />
         <SportsList leagues={leagues} countries={countries} />
       </Fragment>
     );

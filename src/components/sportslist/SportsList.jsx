@@ -7,7 +7,6 @@ import "./SportsList.scss";
 import FilterBar from "../filterbar/FilterBar";
 
 const SportsList = (props) => {
-  console.log(props);
 
   const allLeagues = props.leagues.leagues;
   const allCountries = props.countries.countries;
@@ -31,7 +30,6 @@ const SportsList = (props) => {
           })}
         </ul>
       </section>
-      <FilterBar />
     </Fragment>
   );
 };
