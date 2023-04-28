@@ -1,21 +1,39 @@
 // Infrastructure
-import { Fragment } from 'react';
-import { Link } from 'react-router-dom';
+import { Fragment } from "react";
+import { Link } from "react-router-dom";
 // Styling
-import './SportsList.scss';
+import "./SportsList.scss";
 // Components
-import FilterBar from '../filterbar/FilterBar';
+import FilterBar from "../filterbar/FilterBar";
 
 const SportsList = (props) => {
+  console.log(props);
 
-  console.log(props.leagues);
+  const allLeagues = props.leagues.leagues;
+  const allCountries = props.countries.countries;
+
+  // console.log(allLeagues[0].idLeague);
 
   return (
     <Fragment>
-      <Link to='/leaguepage'>League Page</Link>
+      <Link to="/leaguepage">League Page</Link>
+      <section>
+        <ul>
+          {allLeagues.map((league) => {
+            return (
+              <li key={league.idLeague}>
+                <Link to={`/${league.strLeague}`}>
+                  {league.strLeague}
+                  <span>{league.strSport}</span>
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+      </section>
       <FilterBar />
     </Fragment>
-  )
-}
+  );
+};
 
 export default SportsList;

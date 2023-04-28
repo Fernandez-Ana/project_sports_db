@@ -10,25 +10,12 @@ import DetailsPage from "./pages/detailspage/DetailsPage";
 import "./App.scss";
 
 function App() {
-  const [leagues, setLeagues] = useState([]);
-  const [countries, setCountries] = useState([]);
-
   return (
     <Fragment>
       <Routes>
-        <Route
-          path="/"
-          element={
-            <HomePage
-              leagues={leagues}
-              setLeagues={setLeagues}
-              countries={countries}
-              setCountries={setCountries}
-            />
-          }
-        />
-        <Route path="/leaguepage" element={<LeaguePage />} />
-        <Route path="/:detailspage" element={<DetailsPage />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/:leaguename" element={<LeaguePage />} />
+        <Route path="/:leaguename/detailspage" element={<DetailsPage />} />
       </Routes>
     </Fragment>
   );

@@ -4,32 +4,41 @@ import { useState, useEffect } from "react";
 // Components
 import SportsList from "../../components/sportslist/SportsList";
 import NavBar from "../../components/navbar/Navbar";
+import FilterBar from "../../components/filterbar/FilterBar";
 // Styling
 import "./HomePage.scss";
-import FilterBar from "../../components/filterbar/FilterBar";
 
-const HomePage = (props) => {
-  console.log(props);
+const HomePage = () => {
+  const [leagues, setLeagues] = useState([]);
+  const [countries, setCountries] = useState([]);
+
+  console.log();
   useEffect(() => {
     fetch("https://www.thesportsdb.com/api/v1/json/3/all_leagues.php")
       .then((res) => res.json())
-      .then((leagues) => props.setLeagues(leagues));
+      .then((leagues) => setLeagues(leagues));
     fetch("https://www.thesportsdb.com/api/v1/json/3/all_countries.php")
       .then((res) => res.json())
-      .then((countries) => props.setCountries(countries));
+      .then((countries) => setCountries(countries));
   }, []);
 
-  console.log(props.leagues);
-  console.log(props.countries);
+  // Checking if object is empty for async fetch
+  const isObjEmpty = (leagues) => {
+    return Object.keys(leagues).length === 0;
+  };
 
-  return (
-    <Fragment>
-      <h1>Home Page</h1>
-      <NavBar />
-      <FilterBar countries={props.countries} />
-      <SportsList leagues={props.leagues} />
-    </Fragment>
-  );
+  if (isObjEmpty(leagues) === true) {
+    return <div>loading</div>;
+  } else {
+    return (
+      <Fragment>
+        <h1>Home Page</h1>
+        <NavBar />
+        <FilterBar />
+        <SportsList leagues={leagues} countries={countries} />
+      </Fragment>
+    );
+  }
 };
 
 export default HomePage;
