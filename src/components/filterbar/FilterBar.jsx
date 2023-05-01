@@ -1,12 +1,13 @@
 // Infrastructure
-import { useState } from "react";
+import { useState } from 'react';
 // Styling
-import "./FilterBar.scss";
+import './FilterBar.scss';
 
 const FilterBar = ({ leagues, countries }) => {
 
-  // State for display and hide dropdown menu
-  const [expanded, setExpanded] = useState(false);
+  // Different states for display and hide dropdown menu
+  const [countriesExpanded, setCountriesExpanded] = useState(false);
+  const [sportsExpanded, setSportsExpanded] = useState(false);
   // State for selected checkboxes of dropdown menu
   const [selectedCheckboxes, setSelectedCheckboxes] = useState([]);
 
@@ -22,13 +23,30 @@ const FilterBar = ({ leagues, countries }) => {
   // Function to show checkboxes when selected and hide when deselected
   function showCheckboxes(selectBox) {
     console.log(selectBox);
-    const checkboxes = document.getElementById("checkboxes-" + selectBox);
-    if (!expanded) {
-      checkboxes.style.display = "block";
-      setExpanded(true);
-    } else {
-      checkboxes.style.display = "none";
-      setExpanded(false);
+    const checkboxes = document.querySelector('.checkboxes-wrapper-' + selectBox);
+    console.log(checkboxes);
+
+    switch(selectBox) {
+      case 'countries':
+        if (!countriesExpanded) {
+          checkboxes.style.display = 'block';
+          setCountriesExpanded(true);
+        } else {
+          checkboxes.style.display = 'none';
+          setCountriesExpanded(false);
+        }
+        break;
+      case 'sports':
+        if (!sportsExpanded) {
+          checkboxes.style.display = 'block';
+          setSportsExpanded(true);
+        } else {
+          checkboxes.style.display = 'none';
+          setSportsExpanded(false);
+        }
+        break;
+      default:
+        console.log('error');
     }
   }
 
@@ -41,58 +59,72 @@ const FilterBar = ({ leagues, countries }) => {
     }
   }
 
-  return (
+  return(
     <div className='flex-container'>
-      {selectedCheckboxes.length > 0 && selectedCheckboxes.map((elt) => {
-        return (
-          <div className='selected-element' key={elt}>X {elt}</div>
-        )
-      })}
-      <form className="select_container">
-        {/* <div className="multiselect"> */}
-          <div className="selectBox" onClick={() => showCheckboxes("countries")}>
-            <select>
-              <option>All Countries</option>
-            </select>
-            <div className="overSelect"></div>
+      <div className='flex-container-selected-elements'>
+        {selectedCheckboxes.length > 0 && selectedCheckboxes.map((elt) => {
+          return (
+            <button type='button' className='selected-element' key={elt}>X {elt}</button>
+            )
+          })}
+      </div>
+      <div className='flex-container-filter'>
+        <form className='select-container'>
+          {/* <div className='multiselect'> */}
+            <div className='selectBox' onClick={() => showCheckboxes('countries')}>
+              <select>
+                <option>All Countries</option>
+              </select>
+              <div className='overSelect'></div>
+            </div>
+            <div className='checkboxes-wrapper-countries'>
+              {countriesExpanded && <div className='checkboxes checkboxes-countries'>
+                {countriesArr.map((elt) => {
+                  return (
+                    <li
+                    key={elt.name_en}
+                    className='list-element'>
+                        <label>{elt.name_en}
+                          <input
+                            type='checkbox'
+                            value={elt.name_en}
+                            onChange={getValuesCountries} />
+                        </label>
+                    </li>
+                  )
+                })}
+              </div>}
+            </div>
+          {/* </div> */}
+        </form>
+        <form className='select-container'>
+          <div className='multiselect'>
+            <div className='selectBox' onClick={() => showCheckboxes('sports')}>
+              <select>
+                <option>All Sports</option>
+              </select>
+              <div className='overSelect'></div>
+            </div>
+            <div className='checkboxes-wrapper-sports'>
+              {sportsExpanded && <div className='checkboxes checkboxes-sports'>
+                {sportsSet.map((elt) => {
+                  return (
+                    <li
+                    key={elt}
+                    className='list-element'>
+                        <label>{elt}
+                          <input
+                            type='checkbox'
+                            value={elt} />
+                        </label>
+                    </li>
+                  )
+                })}
+              </div>}
+            </div>
           </div>
-          {!expanded && <div id="checkboxes-countries" className="checkboxes">
-            {countriesArr.map((elt) => {
-              return (
-                <li
-                  key={elt.name_en}
-                  className='list-element'>
-                    <label>{elt.name_en}
-                      <input
-                        type="checkbox"
-                        value={elt.name_en}
-                        onChange={getValuesCountries} />
-                    </label>
-                </li>
-              )
-            })}
-          </div>}
-        {/* </div> */}
-      </form>
-      <form className="select_container">
-        <div className="multiselect">
-          <div className="selectBox" onClick={() => showCheckboxes("sports")}>
-            <select>
-              <option>All Sports</option>
-            </select>
-            <div className="overSelect"></div>
-          </div>
-          <div id="checkboxes-sports" className="checkboxes">
-            {!expanded && <div id="checkboxes-sports" className="checkboxes">
-              {sportsSet.map((elt) => {
-                return (
-                  <li key={elt} className='list-element'><input type="checkbox" value={elt} />{elt}</li>
-                )
-              })}
-            </div>}
-          </div>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   );
 };

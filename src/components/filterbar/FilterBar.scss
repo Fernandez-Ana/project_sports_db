@@ -1,23 +1,36 @@
 .flex-container {
   display: flex;
-  justify-content: end;
-  gap: 3rem;
+  justify-content: space-between;
+  background-color: black;
+  height: 20rem;
+  padding-block-start: 2rem;
 }
 
-.select_container {
-  width: 200px;
+.flex-container-selected-elements {
+  display: flex;
+  gap: 0.5rem;
 }
 
-.select_container {
-  cursor: pointer;
+.flex-container-filter {
+  display: flex;
+  gap: 2rem;
 }
+
+.select-container {
+  min-width: 20rem;
+}
+
 // .multiselect {
 //     // width: 15%;
 //   }
 
 .selectBox {
   position: relative;
-  // border: 0.5rem solid white;
+  border: 0.2rem solid white;
+}
+
+.selectBox:hover {
+  cursor: pointer;
 }
 
 .selectBox select {
@@ -68,4 +81,22 @@
 
 .list-element {
   list-style-type: none;
+  border: 0.1rem solid white;
+}
+
+.list-element:hover {
+  cursor: pointer;
+}
+
+.list-element label:hover {
+  cursor: pointer;
+}
+
+.selected-element {
+  background-color: black;
+  color: white;
+  border: 0.1rem solid white;
+  height: fit-content;
+  padding: 0.3rem;
+  letter-spacing: 0.025rem;
 }
