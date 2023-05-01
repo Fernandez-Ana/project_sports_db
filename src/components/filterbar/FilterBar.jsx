@@ -1,9 +1,14 @@
 // Infrastructure
-import { Fragment } from "react";
+import { useState } from "react";
 // Styling
 import "./FilterBar.scss";
 
 const FilterBar = ({ leagues, countries }) => {
+
+  // State for display and hide dropdown menu
+  const [expanded, setExpanded] = useState(false);
+  // State for selected checkboxes of dropdown menu
+  const [selectedCheckboxes, setSelectedCheckboxes] = useState([]);
 
   const countriesArr = countries.countries;
   const leaguesArr = leagues.leagues;
@@ -13,62 +18,82 @@ const FilterBar = ({ leagues, countries }) => {
   });
 
   const sportsSet = [...new Set(sportsArray)];
-  console.log(sportsSet);
 
-  let expanded = false;
-
-  function showCheckboxes() {
-    let checkboxes = document.getElementById("checkboxes");
+  // Function to show checkboxes when selected and hide when deselected
+  function showCheckboxes(selectBox) {
+    console.log(selectBox);
+    const checkboxes = document.getElementById("checkboxes-" + selectBox);
     if (!expanded) {
       checkboxes.style.display = "block";
-      expanded = true;
+      setExpanded(true);
     } else {
       checkboxes.style.display = "none";
-      expanded = false;
+      setExpanded(false);
     }
   }
 
-
-
+  // Function to get values of selected checkboxes
+  function getValuesCountries(e) {
+    if (e.target.checked) {
+    setSelectedCheckboxes([...selectedCheckboxes, e.target.value]);
+    } else {
+      setSelectedCheckboxes(selectedCheckboxes.filter(elt => elt !== e.target.value));
+    }
+  }
 
   return (
-    <Fragment>
-      <h1>FilterBar</h1>
+    <div className='flex-container'>
+      {selectedCheckboxes.length > 0 && selectedCheckboxes.map((elt) => {
+        return (
+          <div className='selected-element' key={elt}>X {elt}</div>
+        )
+      })}
       <form className="select_container">
-        <div className="multiselect">
-          <div className="selectBox" onClick={showCheckboxes}>
+        {/* <div className="multiselect"> */}
+          <div className="selectBox" onClick={() => showCheckboxes("countries")}>
             <select>
-              <option>Select an option</option>
+              <option>All Countries</option>
             </select>
             <div className="overSelect"></div>
           </div>
-          <div id="checkboxes">
+          {!expanded && <div id="checkboxes-countries" className="checkboxes">
             {countriesArr.map((elt) => {
               return (
-                <li key={elt.name_en}><input type="checkbox" value={elt.name_en} />{elt.name_en}</li>
+                <li
+                  key={elt.name_en}
+                  className='list-element'>
+                    <label>{elt.name_en}
+                      <input
+                        type="checkbox"
+                        value={elt.name_en}
+                        onChange={getValuesCountries} />
+                    </label>
+                </li>
               )
             })}
-          </div>
-        </div>
+          </div>}
+        {/* </div> */}
       </form>
       <form className="select_container">
         <div className="multiselect">
-          <div className="selectBox" onClick={showCheckboxes}>
+          <div className="selectBox" onClick={() => showCheckboxes("sports")}>
             <select>
-              <option>Select an option</option>
+              <option>All Sports</option>
             </select>
             <div className="overSelect"></div>
           </div>
-          <div id="checkboxes">
-            {sportsSet.map((elt) => {
-              return (
-                <li key={elt}><input type="checkbox" value={elt} />{elt}</li>
-              )
-            })}
+          <div id="checkboxes-sports" className="checkboxes">
+            {!expanded && <div id="checkboxes-sports" className="checkboxes">
+              {sportsSet.map((elt) => {
+                return (
+                  <li key={elt} className='list-element'><input type="checkbox" value={elt} />{elt}</li>
+                )
+              })}
+            </div>}
           </div>
         </div>
       </form>
-    </Fragment>
+    </div>
   );
 };
 
