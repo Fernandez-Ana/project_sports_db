@@ -1,22 +1,16 @@
 // Infrastructure
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 // Styling
 import "./FilterBar.scss";
-// import { components } from "react-select";
-// import { default as ReactSelect } from "react-select";
 
 const FilterBar = ({ leagues, countries }) => {
-  console.log(countries.countries);
-  console.log(leagues.leagues);
 
   const countriesArr = countries.countries;
   const leaguesArr = leagues.leagues;
 
-
   const sportsArray = leaguesArr.map(elt => {
     return (elt.strSport)
   });
-  console.log(sportsArray);
 
   const sportsSet = [...new Set(sportsArray)];
   console.log(sportsSet);
@@ -42,7 +36,7 @@ const FilterBar = ({ leagues, countries }) => {
       <h1>FilterBar</h1>
       <form className="select_container">
         <div className="multiselect">
-          <div class="selectBox" onClick={showCheckboxes}>
+          <div className="selectBox" onClick={showCheckboxes}>
             <select>
               <option>Select an option</option>
             </select>
@@ -51,7 +45,7 @@ const FilterBar = ({ leagues, countries }) => {
           <div id="checkboxes">
             {countriesArr.map((elt) => {
               return (
-                <li><input type="checkbox" id="one" onChange={showCheckboxes} value={elt.name_en} />{elt.name_en}</li>
+                <li key={elt.name_en}><input type="checkbox" value={elt.name_en} />{elt.name_en}</li>
               )
             })}
           </div>
@@ -59,7 +53,7 @@ const FilterBar = ({ leagues, countries }) => {
       </form>
       <form className="select_container">
         <div className="multiselect">
-          <div class="selectBox" onClick={showCheckboxes}>
+          <div className="selectBox" onClick={showCheckboxes}>
             <select>
               <option>Select an option</option>
             </select>
@@ -68,7 +62,7 @@ const FilterBar = ({ leagues, countries }) => {
           <div id="checkboxes">
             {sportsSet.map((elt) => {
               return (
-                <li><input type="checkbox" id="one" onChange={showCheckboxes} value={elt} />{elt}</li>
+                <li key={elt}><input type="checkbox" value={elt} />{elt}</li>
               )
             })}
           </div>
@@ -79,4 +73,3 @@ const FilterBar = ({ leagues, countries }) => {
 };
 
 export default FilterBar;
-
