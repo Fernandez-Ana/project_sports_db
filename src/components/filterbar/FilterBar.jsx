@@ -2,6 +2,7 @@
 import { useState } from 'react';
 // Styling
 import './FilterBar.scss';
+import { FiX } from "react-icons/fi";
 
 const FilterBar = ({ leagues, countries }) => {
 
@@ -22,10 +23,10 @@ const FilterBar = ({ leagues, countries }) => {
 
   // Function to show checkboxes when selected and hide when deselected
   function showCheckboxes(selectBox) {
-    console.log(selectBox);
+    // Get checkboxes element according to the selected dropdown menu
     const checkboxes = document.querySelector('.checkboxes-wrapper-' + selectBox);
-    console.log(checkboxes);
 
+    // Switch statement to check which dropdown menu is selected and execute accordingly
     switch(selectBox) {
       case 'countries':
         if (!countriesExpanded) {
@@ -51,7 +52,7 @@ const FilterBar = ({ leagues, countries }) => {
   }
 
   // Function to get values of selected checkboxes
-  function getValuesCountries(e) {
+  function getValues(e) {
     if (e.target.checked) {
     setSelectedCheckboxes([...selectedCheckboxes, e.target.value]);
     } else {
@@ -59,14 +60,28 @@ const FilterBar = ({ leagues, countries }) => {
     }
   }
 
+  // Function to deselect checkboxes by closing the buttons of selected checkboxes
+  function closeButton(e) {
+    setSelectedCheckboxes(selectedCheckboxes.filter(elt => elt !== e.target.value));
+  }
+
+  console.log(selectedCheckboxes);
+
   return(
     <div className='flex-container'>
       <div className='flex-container-selected-elements'>
         {selectedCheckboxes.length > 0 && selectedCheckboxes.map((elt) => {
           return (
-            <button type='button' className='selected-element' key={elt}>X {elt}</button>
-            )
-          })}
+            <button
+              type='button'
+              className='selected-element'
+              value={elt}
+              key={elt}
+              onClick={closeButton}>
+              <FiX size={20} />{elt}
+            </button>
+          )
+        })}
       </div>
       <div className='flex-container-filter'>
         <form className='select-container'>
@@ -88,7 +103,7 @@ const FilterBar = ({ leagues, countries }) => {
                           <input
                             type='checkbox'
                             value={elt.name_en}
-                            onChange={getValuesCountries} />
+                            onChange={getValues} />
                         </label>
                     </li>
                   )
@@ -115,7 +130,8 @@ const FilterBar = ({ leagues, countries }) => {
                         <label>{elt}
                           <input
                             type='checkbox'
-                            value={elt} />
+                            value={elt}
+                            onChange={getValues} />
                         </label>
                     </li>
                   )

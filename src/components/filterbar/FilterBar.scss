@@ -93,10 +93,16 @@
 }
 
 .selected-element {
+  display: flex;
+  align-items: center;
   background-color: black;
   color: white;
   border: 0.1rem solid white;
   height: fit-content;
   padding: 0.3rem;
   letter-spacing: 0.025rem;
+}
+
+.selected-element:hover {
+  cursor: pointer;
 }
