@@ -78,7 +78,7 @@ const FilterBar = ({ leagues, countries }) => {
               value={elt}
               key={elt}
               onClick={closeButton}>
-              <FiX size={20} />{elt}
+              <FiX size={16} style={{pointerEvents: 'none'}} />{elt}
             </button>
           )
         })}
