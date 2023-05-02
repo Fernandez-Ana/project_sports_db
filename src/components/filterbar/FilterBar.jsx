@@ -4,13 +4,7 @@ import { useState, useEffect } from 'react';
 import './FilterBar.scss';
 import { FiX } from "react-icons/fi";
 
-<<<<<<< HEAD
-const FilterBar = ({ leagues, countries }) => {
-  // console.log(countries.countries);
-  // console.log(leagues.leagues);
-=======
 const FilterBar = ({ leagues, countries, onFilterData }) => {
->>>>>>> 423aa6525e268c27f92c57066c356b0c5fa4e0f4
 
   // Different states for display and hide dropdown menu
   const [countriesExpanded, setCountriesExpanded] = useState(false);
@@ -22,19 +16,8 @@ const FilterBar = ({ leagues, countries, onFilterData }) => {
   const countriesArr = countries.countries.map(country => country.name_en);
   const leaguesArr = leagues.leagues;
 
-<<<<<<< HEAD
-
-  const sportsArray = leaguesArr.map(elt => {
-    return (elt.strSport)
-  });
-  // console.log(sportsArray);
-
-  const sportsSet = [...new Set(sportsArray)];
-  // console.log(sportsSet);
-=======
   const sportsArray = leaguesArr.map(elt => elt.strSport);
   const sportsSet = [...new Set(sportsArray)];
->>>>>>> 423aa6525e268c27f92c57066c356b0c5fa4e0f4
 
   // Function to show checkboxes when selected and hide when deselected
   function showCheckboxes(selectBox) {
@@ -104,9 +87,9 @@ const FilterBar = ({ leagues, countries, onFilterData }) => {
 
   useEffect(() => {
     if (selectedCountries.length === 0 && selectedSports.length > 0) {
-      onFilterData( countriesArr, selectedSports );
+      onFilterData(countriesArr, selectedSports );
     } else if (selectedCountries.length > 0 && selectedSports.length === 0) {
-      onFilterData( selectedCountries, sportsSet );
+      onFilterData(selectedCountries, sportsSet );
       } else if (selectedCountries.length > 0 && selectedSports.length > 0) {
       onFilterData(selectedCountries, selectedSports);
         }

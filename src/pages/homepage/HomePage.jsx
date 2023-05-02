@@ -41,13 +41,15 @@ const HomePage = () => {
         const leagues = await res.json();
         if (leagues.countries !== null) {
           const mappedLeagues = leagues.countries.map(league => ({
-            league: league.strLeague,
-            sport: league.strSport
+            idLeague: league.idLeague,
+            strLeague: league.strLeague,
+            strSport: league.strSport
           }));
           filteredLeagues.push(...mappedLeagues);
         }
       }
     }
+    setFilteredLeagues(filteredLeagues);
     console.log(filteredLeagues);
   }
 
