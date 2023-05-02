@@ -13,7 +13,7 @@ const HomePage = () => {
   const [countries, setCountries] = useState([]);
   const [leagueSearch, setLeagueSearch] = useState('')
 
-  console.log();
+  // console.log();
   useEffect(() => {
     fetch("https://www.thesportsdb.com/api/v1/json/3/all_leagues.php")
       .then((res) => res.json())
@@ -23,8 +23,8 @@ const HomePage = () => {
       .then((countries) => setCountries(countries));
   }, []);
 
-  console.log(countries);
-  console.log(leagues);
+  // console.log(countries);
+  // console.log(leagues);
 
   // Checking if object is empty for async fetch
   const isObjEmpty = (leagues) => {
@@ -36,10 +36,10 @@ const HomePage = () => {
   } else {
     return (
       <Fragment>
-        <h1>Home Page</h1>
-        <NavBar leagueSearch={leagueSearch} setLeagueSearch={setLeagueSearch} />
+        {/* <h1>Home Page</h1> */}
+        <NavBar setLeagueSearch={setLeagueSearch} />
         <FilterBar leagues={leagues} countries={countries} />
-        <SportsList leagues={leagues} countries={countries} />
+        <SportsList leagues={leagues} countries={countries} leagueSearch={leagueSearch} />
       </Fragment>
     );
   }

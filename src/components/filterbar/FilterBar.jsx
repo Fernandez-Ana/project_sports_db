@@ -6,8 +6,8 @@ import "./FilterBar.scss";
 // import { default as ReactSelect } from "react-select";
 
 const FilterBar = ({ leagues, countries }) => {
-  console.log(countries.countries);
-  console.log(leagues.leagues);
+  // console.log(countries.countries);
+  // console.log(leagues.leagues);
 
   const countriesArr = countries.countries;
   const leaguesArr = leagues.leagues;
@@ -16,10 +16,10 @@ const FilterBar = ({ leagues, countries }) => {
   const sportsArray = leaguesArr.map(elt => {
     return (elt.strSport)
   });
-  console.log(sportsArray);
+  // console.log(sportsArray);
 
   const sportsSet = [...new Set(sportsArray)];
-  console.log(sportsSet);
+  // console.log(sportsSet);
 
   let expanded = false;
 
