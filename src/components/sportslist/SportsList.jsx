@@ -6,8 +6,12 @@ import "./SportsList.scss";
 
 const SportsList = (props) => {
 
-  let allLeagues = props.leagues.leagues;
-  props.setUpdatedLeagues(allLeagues);
+  let allLeagues = props.leagues.leagues.sort((x, y) => x.strLeague > y.strLeague ? 1 : -1,);
+  const allCountries = props.countries.countries;
+  // const filteredLeagues = props.filteredLeagues;
+  console.log(props.filteredLeagues);
+
+  // console.log(allLeagues[0].idLeague);
 
   if (props.leagueSearch !== '') {
     allLeagues = allLeagues.filter((elt) => {

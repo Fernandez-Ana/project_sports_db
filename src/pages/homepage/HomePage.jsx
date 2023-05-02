@@ -20,12 +20,16 @@ const HomePage = () => {
   useEffect(() => {
     fetch("https://www.thesportsdb.com/api/v1/json/3/all_leagues.php")
       .then((res) => res.json())
-      .then((leagues) => setLeagues(leagues));
+      .then((leagues) => {
+        setLeagues(leagues)
+      })
+      ;
     fetch("https://www.thesportsdb.com/api/v1/json/3/all_countries.php")
       .then((res) => res.json())
       .then((countries) => setCountries(countries));
   }, []);
 
+  console.log(leagues)
   // Checking if object is empty for async fetch
   const isObjEmpty = (leagues) => {
     return Object.keys(leagues).length === 0;
