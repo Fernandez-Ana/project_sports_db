@@ -7,6 +7,7 @@ import NavBar from "../../components/navbar/Navbar";
 import FilterBar from "../../components/filterbar/FilterBar";
 // Styling
 import "./HomePage.scss";
+import LeaguePage from "../leaguepage/LeaguePage";
 
 const HomePage = () => {
   // States for all leagues, all countries data from API, filtered leagues and search input
