@@ -1,24 +1,22 @@
 // Infrastructure
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 // Styling
 import './FilterBar.scss';
 import { FiX } from "react-icons/fi";
 
-const FilterBar = ({ leagues, countries }) => {
+const FilterBar = ({ leagues, countries, onFilterData }) => {
 
   // Different states for display and hide dropdown menu
   const [countriesExpanded, setCountriesExpanded] = useState(false);
   const [sportsExpanded, setSportsExpanded] = useState(false);
-  // State for selected checkboxes of dropdown menu
-  const [selectedCheckboxes, setSelectedCheckboxes] = useState([]);
+  // States for selected checkboxes of dropdown menus
+  const [selectedCountries, setSelectedCountries] = useState([]);
+  const [selectedSports, setSelectedSports] = useState([]);
 
-  const countriesArr = countries.countries;
+  const countriesArr = countries.countries.map(country => country.name_en);
   const leaguesArr = leagues.leagues;
 
-  const sportsArray = leaguesArr.map(elt => {
-    return (elt.strSport)
-  });
-
+  const sportsArray = leaguesArr.map(elt => elt.strSport);
   const sportsSet = [...new Set(sportsArray)];
 
   // Function to show checkboxes when selected and hide when deselected
@@ -51,26 +49,69 @@ const FilterBar = ({ leagues, countries }) => {
     }
   }
 
-  // Function to get values of selected checkboxes
-  function getValues(e) {
-    if (e.target.checked) {
-    setSelectedCheckboxes([...selectedCheckboxes, e.target.value]);
+  // Function to deselect checkboxes by closing the buttons of selected checkboxes
+  function closeButton(e) {
+    const value = e.target.value;
+    if (selectedCountries.includes(value)) {
+      setSelectedCountries(selectedCountries.filter(elt => elt !== value));
     } else {
-      setSelectedCheckboxes(selectedCheckboxes.filter(elt => elt !== e.target.value));
+      setSelectedSports(selectedSports.filter(elt => elt !== value));
+    }
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    checkboxes.forEach(checkbox => {
+      if (checkbox.value === value) {
+        checkbox.checked = false;
+      }
+    });
+  }
+
+  // Function to get values of selected checkboxes of countries
+  function getCountryValues(e) {
+    if (e.target.checked) {
+    setSelectedCountries([...selectedCountries, e.target.value]);
+    } else {
+      const filteredCountries = selectedCountries.filter(elt => elt !== e.target.value);
+      setSelectedCountries(filteredCountries);
     }
   }
 
-  // Function to deselect checkboxes by closing the buttons of selected checkboxes
-  function closeButton(e) {
-    setSelectedCheckboxes(selectedCheckboxes.filter(elt => elt !== e.target.value));
+  // Function to get values of selected checkboxes of sports
+  function getSportValues(e) {
+    if (e.target.checked) {
+    setSelectedSports([...selectedSports, e.target.value]);
+    } else {
+      const filteredSports = selectedSports.filter(elt => elt !== e.target.value);
+      setSelectedSports(filteredSports);
+    }
   }
 
-  console.log(selectedCheckboxes);
+  useEffect(() => {
+    if (selectedCountries.length === 0 && selectedSports.length > 0) {
+      onFilterData( countriesArr, selectedSports );
+    } else if (selectedCountries.length > 0 && selectedSports.length === 0) {
+      onFilterData( selectedCountries, sportsSet );
+      } else if (selectedCountries.length > 0 && selectedSports.length > 0) {
+      onFilterData(selectedCountries, selectedSports);
+        }
+
+  }, [selectedCountries, selectedSports]);
 
   return(
     <div className='flex-container'>
       <div className='flex-container-selected-elements'>
-        {selectedCheckboxes.length > 0 && selectedCheckboxes.map((elt) => {
+        {selectedCountries.length > 0 && selectedCountries.map((elt) => {
+          return (
+            <button
+              type='button'
+              className='selected-element'
+              value={elt}
+              key={elt}
+              onClick={closeButton}>
+              <FiX size={16} style={{pointerEvents: 'none'}} />{elt}
+            </button>
+          )
+        })}
+        {selectedSports.length > 0 && selectedSports.map((elt) => {
           return (
             <button
               type='button'
@@ -94,16 +135,17 @@ const FilterBar = ({ leagues, countries }) => {
             </div>
             <div className='checkboxes-wrapper-countries'>
               {countriesExpanded && <div className='checkboxes checkboxes-countries'>
-                {countriesArr.map((elt) => {
+                {countriesArr.map(country => {
                   return (
                     <li
-                    key={elt.name_en}
+                    key={country}
                     className='list-element'>
-                        <label>{elt.name_en}
+                        <label>{country}
                           <input
                             type='checkbox'
-                            value={elt.name_en}
-                            onChange={getValues} />
+                            value={country}
+                            checked={selectedCountries.includes(country)}
+                            onChange={getCountryValues} />
                         </label>
                     </li>
                   )
@@ -131,7 +173,8 @@ const FilterBar = ({ leagues, countries }) => {
                           <input
                             type='checkbox'
                             value={elt}
-                            onChange={getValues} />
+                            checked={selectedSports.includes(elt)}
+                            onChange={getSportValues} />
                         </label>
                     </li>
                   )

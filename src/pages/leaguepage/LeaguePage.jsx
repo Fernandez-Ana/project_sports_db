@@ -12,7 +12,7 @@ const LeaguePage = () => {
   // Setting state for data fetch
   const [teams, setTeams] = useState([]);
 
-  // Fetching data fromt API for display teams and detail page
+  // Fetching data from API for display teams and detail page
   useEffect(() => {
     fetch(
       `https://www.thesportsdb.com/api/v1/json/3/search_all_teams.php?l=${leagueParams.leaguename}`
