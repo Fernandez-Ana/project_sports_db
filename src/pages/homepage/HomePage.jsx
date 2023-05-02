@@ -13,7 +13,8 @@ const HomePage = () => {
   const [leagues, setLeagues] = useState([]);
   const [countries, setCountries] = useState([]);
   const [filteredLeagues, setFilteredLeagues] = useState([]);
-  const [leagueSearch, setLeagueSearch] = useState('')
+  const [filterEmpty, setFilterEmpty] = useState(true);
+  const [leagueSearch, setLeagueSearch] = useState('');
 
   // Fetch all countries and all leagues data from API
   useEffect(() => {
@@ -39,18 +40,25 @@ const HomePage = () => {
       for (const sport of selectedSports) {
         const res = await fetch(`https://www.thesportsdb.com/api/v1/json/3/search_all_leagues.php?c=${country}&s=${sport}`);
         const leagues = await res.json();
-          if (leagues.countries !== null) {
+        if (leagues.countries !== null) {
           const mappedLeagues = leagues.countries.map(league => ({
             idLeague: league.idLeague,
             strLeague: league.strLeague,
             strSport: league.strSport
           }));
           filteredLeagues.push(...mappedLeagues);
-          }
+        }
       }
     }
     setFilteredLeagues(filteredLeagues);
     console.log(filteredLeagues);
+  }
+
+  const handleFilterEmpty = () => {
+    // console.log("HandleEmptyFilter:" + boolean);
+    // console.log(leagues);
+    // setLeagues(leagues);
+    // setFilterEmpty(boolean);
   }
 
   if (isObjEmpty(leagues) === true) {
@@ -59,9 +67,20 @@ const HomePage = () => {
     return (
       <Fragment>
         {/* <h1>Home Page</h1> */}
-        <NavBar leagueSearch={leagueSearch} setLeagueSearch={setLeagueSearch} />
-        <FilterBar leagues={leagues} countries={countries} onFilterData={handleFilterData}/>
-        <SportsList leagues={leagues} countries={countries} filteredLeagues={filteredLeagues} leagueSearch={leagueSearch}/>
+        <NavBar
+          leagueSearch={leagueSearch}
+          setLeagueSearch={setLeagueSearch} />
+        <FilterBar
+          leagues={leagues}
+          countries={countries}
+          onFilterData={handleFilterData}
+          onFilterEmpty={handleFilterEmpty} />
+        <SportsList
+          leagues={leagues}
+          countries={countries}
+          filteredLeagues={filteredLeagues}
+          filterEmpty={filterEmpty}
+          leagueSearch={leagueSearch} />
       </Fragment>
     );
   }

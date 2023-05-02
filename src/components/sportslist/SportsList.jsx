@@ -3,17 +3,11 @@ import { Fragment } from "react";
 import { Link } from "react-router-dom";
 // Styling
 import "./SportsList.scss";
-// Components
-import FilterBar from "../filterbar/FilterBar";
 
 const SportsList = (props) => {
 
   let allLeagues = props.leagues.leagues;
-  const allCountries = props.countries.countries;
-  // const filteredLeagues = props.filteredLeagues;
-  console.log(props.filteredLeagues);
-
-  // console.log(allLeagues[0].idLeague);
+  props.setUpdatedLeagues(allLeagues);
 
   if (props.leagueSearch !== '') {
     allLeagues = allLeagues.filter((elt) => {
@@ -24,10 +18,10 @@ const SportsList = (props) => {
   }
 
   if (props.filteredLeagues.length > 0) {
-    console.log(allLeagues);
-    console.log(allLeagues);
     allLeagues = props.filteredLeagues;
   }
+  console.log("SportsList FilterEmpty:" + props.filterEmpty);
+  console.log('trigger');
 
   return (
     <Fragment>
