@@ -4,44 +4,51 @@ import { Link } from "react-router-dom";
 // Styling
 import "./SportsList.scss";
 
-const SportsList = (props) => {
+const SportsList = ({ leagues, filteredLeagues, leagueSearch, filterEmpty }) => {
 
-  let allLeagues = props.leagues.leagues.sort((x, y) => x.strLeague > y.strLeague ? 1 : -1,);
-  const allCountries = props.countries.countries;
-  // const filteredLeagues = props.filteredLeagues;
-  console.log(props.filteredLeagues);
+  // Sorting leagues alphabetically and data arrays for rendering list
+  let allLeaguesArr = leagues.leagues.sort((x, y) => x.strLeague > y.strLeague ? 1 : -1,);
+  let filteredLeaguesArr = filteredLeagues.sort((x, y) => x.strLeague > y.strLeague ? 1 : -1,);
 
-  // console.log(allLeagues[0].idLeague);
-
-  if (props.leagueSearch !== '') {
-    allLeagues = allLeagues.filter((elt) => {
+  // Filtering leagues according to search input
+  if (leagueSearch !== '' && filterEmpty === true) {
+    allLeaguesArr = allLeaguesArr.filter((elt) => {
       return (
-        elt.strLeague.toLowerCase().includes(props.leagueSearch.toLowerCase())
+        elt.strLeague.toLowerCase().includes(leagueSearch.toLowerCase())
+      )
+    })
+  } else if (leagueSearch !== '' && filterEmpty === false) {
+    filteredLeaguesArr = filteredLeaguesArr.filter((elt) => {
+      return (
+        elt.strLeague.toLowerCase().includes(leagueSearch.toLowerCase())
       )
     })
   }
-
-  if (props.filteredLeagues.length > 0) {
-    allLeagues = props.filteredLeagues;
-  }
-  console.log("SportsList FilterEmpty:" + props.filterEmpty);
-  console.log('trigger');
 
   return (
     <Fragment>
       <Link to="/leaguepage">League Page</Link>
       <section>
         <ul>
-          {allLeagues.map((league) => {
-            return (
+          {filterEmpty ? (
+            allLeaguesArr.map(league => (
               <li key={league.idLeague}>
                 <Link to={`/${league.strLeague}`}>
                   {league.strLeague}
                   <span>{league.strSport}</span>
                 </Link>
               </li>
-            );
-          })}
+            ))
+          ) : (
+            filteredLeaguesArr.map(league => (
+              <li key={league.idLeague}>
+                <Link to={`/${league.strLeague}`}>
+                  {league.strLeague}
+                  <span>{league.strSport}</span>
+                </Link>
+              </li>
+            ))
+          )}
         </ul>
       </section>
     </Fragment>

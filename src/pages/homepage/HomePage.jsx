@@ -29,7 +29,6 @@ const HomePage = () => {
       .then((countries) => setCountries(countries));
   }, []);
 
-  console.log(leagues)
   // Checking if object is empty for async fetch
   const isObjEmpty = (leagues) => {
     return Object.keys(leagues).length === 0;
@@ -55,14 +54,10 @@ const HomePage = () => {
       }
     }
     setFilteredLeagues(filteredLeagues);
-    console.log(filteredLeagues);
   }
 
-  const handleFilterEmpty = () => {
-    // console.log("HandleEmptyFilter:" + boolean);
-    // console.log(leagues);
-    // setLeagues(leagues);
-    // setFilterEmpty(boolean);
+  const handleFilterEmpty = (boolean) => {
+    setFilterEmpty(boolean);
   }
 
   if (isObjEmpty(leagues) === true) {
@@ -81,7 +76,6 @@ const HomePage = () => {
           onFilterEmpty={handleFilterEmpty} />
         <SportsList
           leagues={leagues}
-          countries={countries}
           filteredLeagues={filteredLeagues}
           filterEmpty={filterEmpty}
           leagueSearch={leagueSearch} />

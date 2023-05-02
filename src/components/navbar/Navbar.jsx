@@ -1,5 +1,5 @@
 // Infrastructure
-import { Fragment, useState, useEffect } from "react";
+import { Fragment } from "react";
 import { Link } from "react-router-dom";
 
 // Styling

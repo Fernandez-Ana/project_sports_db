@@ -4,9 +4,7 @@ import { useState, useEffect } from 'react';
 import './FilterBar.scss';
 import { FiX } from "react-icons/fi";
 
-const FilterBar = ({ leagues, countries, onFilterData, onFilterEmpty, updatedLeagues }) => {
-  console.log(updatedLeagues);
-
+const FilterBar = ({ leagues, countries, onFilterData, onFilterEmpty }) => {
   // Different states for display and hide dropdown menu
   const [countriesExpanded, setCountriesExpanded] = useState(false);
   const [sportsExpanded, setSportsExpanded] = useState(false);
@@ -79,6 +77,7 @@ const FilterBar = ({ leagues, countries, onFilterData, onFilterEmpty, updatedLea
   function getSportValues(e) {
     if (e.target.checked) {
       setSelectedSports([...selectedSports, e.target.value]);
+      onFilterEmpty(false);
     } else {
       setSelectedSports(selectedSports.filter(elt => elt !== e.target.value));
     }
@@ -93,7 +92,7 @@ const FilterBar = ({ leagues, countries, onFilterData, onFilterEmpty, updatedLea
     } else if (selectedCountries.length > 0 && selectedSports.length > 0) {
       onFilterData(selectedCountries, selectedSports);
     } else if (selectedCountries.length === 0 && selectedSports.length === 0) {
-      onFilterEmpty();
+      onFilterEmpty(true);
     }
 
   }, [selectedCountries, selectedSports]);
