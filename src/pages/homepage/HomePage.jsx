@@ -15,11 +15,7 @@ const HomePage = () => {
   const [filteredLeagues, setFilteredLeagues] = useState([]);
   const [leagueSearch, setLeagueSearch] = useState('')
 
-<<<<<<< HEAD
-  // console.log();
-=======
   // Fetch all countries and all leagues data from API
->>>>>>> 423aa6525e268c27f92c57066c356b0c5fa4e0f4
   useEffect(() => {
     fetch("https://www.thesportsdb.com/api/v1/json/3/all_leagues.php")
       .then((res) => res.json())
@@ -29,12 +25,6 @@ const HomePage = () => {
       .then((countries) => setCountries(countries));
   }, []);
 
-<<<<<<< HEAD
-  // console.log(countries);
-  // console.log(leagues);
-
-=======
->>>>>>> 423aa6525e268c27f92c57066c356b0c5fa4e0f4
   // Checking if object is empty for async fetch
   const isObjEmpty = (leagues) => {
     return Object.keys(leagues).length === 0;
@@ -66,16 +56,10 @@ const HomePage = () => {
   } else {
     return (
       <Fragment>
-<<<<<<< HEAD
         {/* <h1>Home Page</h1> */}
-        <NavBar setLeagueSearch={setLeagueSearch} />
-        <FilterBar leagues={leagues} countries={countries} />
-        <SportsList leagues={leagues} countries={countries} leagueSearch={leagueSearch} />
-=======
         <NavBar leagueSearch={leagueSearch} setLeagueSearch={setLeagueSearch} />
-        <FilterBar leagues={leagues} countries={countries} onFilterData={handleFilterData}/>
-        <SportsList leagues={leagues} countries={countries} filteredLeagues={filteredLeagues} />
->>>>>>> 423aa6525e268c27f92c57066c356b0c5fa4e0f4
+        <FilterBar leagues={leagues} countries={countries} onFilterData={handleFilterData} />
+        <SportsList leagues={leagues} countries={countries} filteredLeagues={filteredLeagues} leagueSearch={leagueSearch} />
       </Fragment>
     );
   }
