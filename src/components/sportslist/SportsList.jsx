@@ -8,10 +8,26 @@ import FilterBar from "../filterbar/FilterBar";
 
 const SportsList = (props) => {
 
-  const allLeagues = props.leagues.leagues;
+  let allLeagues = props.leagues.leagues;
   const allCountries = props.countries.countries;
+  // const filteredLeagues = props.filteredLeagues;
+  console.log(props.filteredLeagues);
 
   // console.log(allLeagues[0].idLeague);
+
+  if (props.leagueSearch !== '') {
+    allLeagues = allLeagues.filter((elt) => {
+      return (
+        elt.strLeague.toLowerCase().includes(props.leagueSearch.toLowerCase())
+      )
+    })
+  }
+
+  if (props.filteredLeagues.length > 0) {
+    console.log(allLeagues);
+    console.log(allLeagues);
+    allLeagues = props.filteredLeagues;
+  }
 
   return (
     <Fragment>

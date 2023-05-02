@@ -1,82 +1,191 @@
 // Infrastructure
-import { Fragment, useState } from "react";
+import { useState, useEffect } from 'react';
 // Styling
-import "./FilterBar.scss";
-// import { components } from "react-select";
-// import { default as ReactSelect } from "react-select";
+import './FilterBar.scss';
+import { FiX } from "react-icons/fi";
 
-const FilterBar = ({ leagues, countries }) => {
-  console.log(countries.countries);
-  console.log(leagues.leagues);
+const FilterBar = ({ leagues, countries, onFilterData }) => {
 
-  const countriesArr = countries.countries;
+  // Different states for display and hide dropdown menu
+  const [countriesExpanded, setCountriesExpanded] = useState(false);
+  const [sportsExpanded, setSportsExpanded] = useState(false);
+  // States for selected checkboxes of dropdown menus
+  const [selectedCountries, setSelectedCountries] = useState([]);
+  const [selectedSports, setSelectedSports] = useState([]);
+
+  const countriesArr = countries.countries.map(country => country.name_en);
   const leaguesArr = leagues.leagues;
 
-
-  const sportsArray = leaguesArr.map(elt => {
-    return (elt.strSport)
-  });
-  console.log(sportsArray);
-
+  const sportsArray = leaguesArr.map(elt => elt.strSport);
   const sportsSet = [...new Set(sportsArray)];
-  console.log(sportsSet);
 
-  let expanded = false;
+  // Function to show checkboxes when selected and hide when deselected
+  function showCheckboxes(selectBox) {
+    // Get checkboxes element according to the selected dropdown menu
+    const checkboxes = document.querySelector('.checkboxes-wrapper-' + selectBox);
 
-  function showCheckboxes() {
-    let checkboxes = document.getElementById("checkboxes");
-    if (!expanded) {
-      checkboxes.style.display = "block";
-      expanded = true;
-    } else {
-      checkboxes.style.display = "none";
-      expanded = false;
+    // Switch statement to check which dropdown menu is selected and execute accordingly
+    switch(selectBox) {
+      case 'countries':
+        if (!countriesExpanded) {
+          checkboxes.style.display = 'block';
+          setCountriesExpanded(true);
+        } else {
+          checkboxes.style.display = 'none';
+          setCountriesExpanded(false);
+        }
+        break;
+      case 'sports':
+        if (!sportsExpanded) {
+          checkboxes.style.display = 'block';
+          setSportsExpanded(true);
+        } else {
+          checkboxes.style.display = 'none';
+          setSportsExpanded(false);
+        }
+        break;
+      default:
+        console.log('error');
     }
   }
 
+  // Function to deselect checkboxes by closing the buttons of selected checkboxes
+  function closeButton(e) {
+    const value = e.target.value;
+    if (selectedCountries.includes(value)) {
+      setSelectedCountries(selectedCountries.filter(elt => elt !== value));
+    } else {
+      setSelectedSports(selectedSports.filter(elt => elt !== value));
+    }
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    checkboxes.forEach(checkbox => {
+      if (checkbox.value === value) {
+        checkbox.checked = false;
+      }
+    });
+  }
 
+  // Function to get values of selected checkboxes of countries
+  function getCountryValues(e) {
+    if (e.target.checked) {
+    setSelectedCountries([...selectedCountries, e.target.value]);
+    } else {
+      const filteredCountries = selectedCountries.filter(elt => elt !== e.target.value);
+      setSelectedCountries(filteredCountries);
+    }
+  }
 
+  // Function to get values of selected checkboxes of sports
+  function getSportValues(e) {
+    if (e.target.checked) {
+    setSelectedSports([...selectedSports, e.target.value]);
+    } else {
+      const filteredSports = selectedSports.filter(elt => elt !== e.target.value);
+      setSelectedSports(filteredSports);
+    }
+  }
 
-  return (
-    <Fragment>
-      <h1>FilterBar</h1>
-      <form className="select_container">
-        <div className="multiselect">
-          <div class="selectBox" onClick={showCheckboxes}>
-            <select>
-              <option>Select an option</option>
-            </select>
-            <div className="overSelect"></div>
+  useEffect(() => {
+    if (selectedCountries.length === 0 && selectedSports.length > 0) {
+      onFilterData(countriesArr, selectedSports );
+    } else if (selectedCountries.length > 0 && selectedSports.length === 0) {
+      onFilterData(selectedCountries, sportsSet );
+      } else if (selectedCountries.length > 0 && selectedSports.length > 0) {
+      onFilterData(selectedCountries, selectedSports);
+        }
+
+  }, [selectedCountries, selectedSports]);
+
+  return(
+    <div className='flex-container'>
+      <div className='flex-container-selected-elements'>
+        {selectedCountries.length > 0 && selectedCountries.map((elt) => {
+          return (
+            <button
+              type='button'
+              className='selected-element'
+              value={elt}
+              key={elt}
+              onClick={closeButton}>
+              <FiX size={16} style={{pointerEvents: 'none'}} />{elt}
+            </button>
+          )
+        })}
+        {selectedSports.length > 0 && selectedSports.map((elt) => {
+          return (
+            <button
+              type='button'
+              className='selected-element'
+              value={elt}
+              key={elt}
+              onClick={closeButton}>
+              <FiX size={16} style={{pointerEvents: 'none'}} />{elt}
+            </button>
+          )
+        })}
+      </div>
+      <div className='flex-container-filter'>
+        <form className='select-container'>
+          {/* <div className='multiselect'> */}
+            <div className='selectBox' onClick={() => showCheckboxes('countries')}>
+              <select>
+                <option>All Countries</option>
+              </select>
+              <div className='overSelect'></div>
+            </div>
+            <div className='checkboxes-wrapper-countries'>
+              {countriesExpanded && <div className='checkboxes checkboxes-countries'>
+                {countriesArr.map(country => {
+                  return (
+                    <li
+                    key={country}
+                    className='list-element'>
+                        <label>{country}
+                          <input
+                            type='checkbox'
+                            value={country}
+                            checked={selectedCountries.includes(country)}
+                            onChange={getCountryValues} />
+                        </label>
+                    </li>
+                  )
+                })}
+              </div>}
+            </div>
+          {/* </div> */}
+        </form>
+        <form className='select-container'>
+          <div className='multiselect'>
+            <div className='selectBox' onClick={() => showCheckboxes('sports')}>
+              <select>
+                <option>All Sports</option>
+              </select>
+              <div className='overSelect'></div>
+            </div>
+            <div className='checkboxes-wrapper-sports'>
+              {sportsExpanded && <div className='checkboxes checkboxes-sports'>
+                {sportsSet.map((elt) => {
+                  return (
+                    <li
+                    key={elt}
+                    className='list-element'>
+                        <label>{elt}
+                          <input
+                            type='checkbox'
+                            value={elt}
+                            checked={selectedSports.includes(elt)}
+                            onChange={getSportValues} />
+                        </label>
+                    </li>
+                  )
+                })}
+              </div>}
+            </div>
           </div>
-          <div id="checkboxes">
-            {countriesArr.map((elt) => {
-              return (
-                <li><input type="checkbox" id="one" onChange={showCheckboxes} value={elt.name_en} />{elt.name_en}</li>
-              )
-            })}
-          </div>
-        </div>
-      </form>
-      <form className="select_container">
-        <div className="multiselect">
-          <div class="selectBox" onClick={showCheckboxes}>
-            <select>
-              <option>Select an option</option>
-            </select>
-            <div className="overSelect"></div>
-          </div>
-          <div id="checkboxes">
-            {sportsSet.map((elt) => {
-              return (
-                <li><input type="checkbox" id="one" onChange={showCheckboxes} value={elt} />{elt}</li>
-              )
-            })}
-          </div>
-        </div>
-      </form>
-    </Fragment>
+        </form>
+      </div>
+    </div>
   );
 };
 
 export default FilterBar;
-

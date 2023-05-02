@@ -9,11 +9,13 @@ import FilterBar from "../../components/filterbar/FilterBar";
 import "./HomePage.scss";
 
 const HomePage = () => {
+  // States for all leagues, all countries data from API, filtered leagues and search input
   const [leagues, setLeagues] = useState([]);
   const [countries, setCountries] = useState([]);
+  const [filteredLeagues, setFilteredLeagues] = useState([]);
   const [leagueSearch, setLeagueSearch] = useState('')
 
-  console.log();
+  // Fetch all countries and all leagues data from API
   useEffect(() => {
     fetch("https://www.thesportsdb.com/api/v1/json/3/all_leagues.php")
       .then((res) => res.json())
@@ -23,23 +25,43 @@ const HomePage = () => {
       .then((countries) => setCountries(countries));
   }, []);
 
-  console.log(countries);
-  console.log(leagues);
-
   // Checking if object is empty for async fetch
   const isObjEmpty = (leagues) => {
     return Object.keys(leagues).length === 0;
   };
+
+  // Fetch data from API according to selected countries and sports selected in FilterBar
+  const handleFilterData = async (selectedCountries, selectedSports) => {
+    // Array for filtered leagues
+    const filteredLeagues = [];
+    // Fetching data from API for each country and sport according to selected countries and sports from FilterBar
+    for (const country of selectedCountries) {
+      for (const sport of selectedSports) {
+        const res = await fetch(`https://www.thesportsdb.com/api/v1/json/3/search_all_leagues.php?c=${country}&s=${sport}`);
+        const leagues = await res.json();
+          if (leagues.countries !== null) {
+          const mappedLeagues = leagues.countries.map(league => ({
+            idLeague: league.idLeague,
+            strLeague: league.strLeague,
+            strSport: league.strSport
+          }));
+          filteredLeagues.push(...mappedLeagues);
+          }
+      }
+    }
+    setFilteredLeagues(filteredLeagues);
+    console.log(filteredLeagues);
+  }
 
   if (isObjEmpty(leagues) === true) {
     return <div>loading</div>;
   } else {
     return (
       <Fragment>
-        <h1>Home Page</h1>
+        {/* <h1>Home Page</h1> */}
         <NavBar leagueSearch={leagueSearch} setLeagueSearch={setLeagueSearch} />
-        <FilterBar leagues={leagues} countries={countries} />
-        <SportsList leagues={leagues} countries={countries} />
+        <FilterBar leagues={leagues} countries={countries} onFilterData={handleFilterData}/>
+        <SportsList leagues={leagues} countries={countries} filteredLeagues={filteredLeagues} leagueSearch={leagueSearch}/>
       </Fragment>
     );
   }

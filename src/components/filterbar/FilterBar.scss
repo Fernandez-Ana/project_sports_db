@@ -1,14 +1,42 @@
-.multiselect {
-    // width: 15%;
-  }
-  
-  .selectBox {
-    position: relative;
-  }
-  
-  .selectBox select {
-    width: 100%;
-    background-color: tomato;
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+  background-color: black;
+  height: 20rem;
+  padding-block-start: 2rem;
+}
+
+.flex-container-selected-elements {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.flex-container-filter {
+  display: flex;
+  gap: 2rem;
+}
+
+.select-container {
+  min-width: 20rem;
+}
+
+// .multiselect {
+//     // width: 15%;
+//   }
+
+.selectBox {
+  position: relative;
+  border: 0.2rem solid white;
+}
+
+.selectBox:hover {
+  cursor: pointer;
+}
+
+.selectBox select {
+  width: 100%;
+  color: white;
+  background-color: black;
 }
 
 .overSelect {
@@ -18,38 +46,38 @@
     top: 0;
     bottom: 0;
   }
-  
-  #mySelectOptions {
-    display: none;
-    border: 0.5px #7c7c7c solid;
-    // background-color: #ffffff;
-    max-height: 150px;
-    overflow-y: scroll;
-    // background-color: tomato;
-  }
-  
-  #mySelectOptions label {
-    display: block;
-    font-weight: normal;
-    display: block;
-    white-space: nowrap;
-    min-height: 1.2em;
-    background-color: #ffffff00;
-    padding: 0 2.25rem 0 .75rem;
-    
-    /* padding: .375rem 2.25rem .375rem .75rem; */
-  }
-  
-  #mySelectOptions label:hover {
-    background-color: #1e90ff;
-  }
 
-  #checkboxes {
-    background-color: #1e90ff;
-    height: 15rem;
-    overflow: scroll;
-  }
+.checkboxes {
+  color: white;
+  background-color: black;
+  height: 15rem;
+  overflow-y: scroll;
+}
 
-  .select_container {
-    width: 200px;
-  }
+.list-element {
+  list-style-type: none;
+  border: 0.1rem solid white;
+}
+
+.list-element:hover {
+  cursor: pointer;
+}
+
+.list-element label:hover {
+  cursor: pointer;
+}
+
+.selected-element {
+  display: flex;
+  align-items: center;
+  background-color: black;
+  color: white;
+  border: 0.1rem solid white;
+  height: fit-content;
+  padding: 0.3rem;
+  letter-spacing: 0.025rem;
+}
+
+.selected-element:hover {
+  cursor: pointer;
+}
