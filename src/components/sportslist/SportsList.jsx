@@ -8,7 +8,7 @@ import FilterBar from "../filterbar/FilterBar";
 
 const SportsList = (props) => {
 
-  let allLeagues = props.leagues.leagues;
+  let allLeagues = props.leagues.leagues.sort((x, y) => x.strLeague > y.strLeague ? 1 : -1,);
   const allCountries = props.countries.countries;
   // const filteredLeagues = props.filteredLeagues;
   console.log(props.filteredLeagues);
