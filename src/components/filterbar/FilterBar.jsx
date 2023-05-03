@@ -13,10 +13,10 @@ const FilterBar = ({ leagues, countries, onFilterData }) => {
   const [selectedCountries, setSelectedCountries] = useState([]);
   const [selectedSports, setSelectedSports] = useState([]);
 
-  const countriesArr = countries.countries.map(country => country.name_en);
+  const countriesArr = countries.countries.map(country => country.name_en).sort((x, y) => x > y ? 1 : -1,);
   const leaguesArr = leagues.leagues;
 
-  const sportsArray = leaguesArr.map(elt => elt.strSport);
+  const sportsArray = leaguesArr.map(elt => elt.strSport).sort((x, y) => x > y ? 1 : -1,);
   const sportsSet = [...new Set(sportsArray)];
 
   // Function to show checkboxes when selected and hide when deselected
@@ -25,7 +25,7 @@ const FilterBar = ({ leagues, countries, onFilterData }) => {
     const checkboxes = document.querySelector('.checkboxes-wrapper-' + selectBox);
 
     // Switch statement to check which dropdown menu is selected and execute accordingly
-    switch(selectBox) {
+    switch (selectBox) {
       case 'countries':
         if (!countriesExpanded) {
           checkboxes.style.display = 'block';
@@ -68,7 +68,7 @@ const FilterBar = ({ leagues, countries, onFilterData }) => {
   // Function to get values of selected checkboxes of countries
   function getCountryValues(e) {
     if (e.target.checked) {
-    setSelectedCountries([...selectedCountries, e.target.value]);
+      setSelectedCountries([...selectedCountries, e.target.value]);
     } else {
       const filteredCountries = selectedCountries.filter(elt => elt !== e.target.value);
       setSelectedCountries(filteredCountries);
@@ -78,7 +78,7 @@ const FilterBar = ({ leagues, countries, onFilterData }) => {
   // Function to get values of selected checkboxes of sports
   function getSportValues(e) {
     if (e.target.checked) {
-    setSelectedSports([...selectedSports, e.target.value]);
+      setSelectedSports([...selectedSports, e.target.value]);
     } else {
       const filteredSports = selectedSports.filter(elt => elt !== e.target.value);
       setSelectedSports(filteredSports);
@@ -87,16 +87,16 @@ const FilterBar = ({ leagues, countries, onFilterData }) => {
 
   useEffect(() => {
     if (selectedCountries.length === 0 && selectedSports.length > 0) {
-      onFilterData(countriesArr, selectedSports );
+      onFilterData(countriesArr, selectedSports);
     } else if (selectedCountries.length > 0 && selectedSports.length === 0) {
-      onFilterData(selectedCountries, sportsSet );
-      } else if (selectedCountries.length > 0 && selectedSports.length > 0) {
+      onFilterData(selectedCountries, sportsSet);
+    } else if (selectedCountries.length > 0 && selectedSports.length > 0) {
       onFilterData(selectedCountries, selectedSports);
-        }
+    }
 
   }, [selectedCountries, selectedSports]);
 
-  return(
+  return (
     <div className='flex-container'>
       <div className='flex-container-selected-elements'>
         {selectedCountries.length > 0 && selectedCountries.map((elt) => {
@@ -107,7 +107,7 @@ const FilterBar = ({ leagues, countries, onFilterData }) => {
               value={elt}
               key={elt}
               onClick={closeButton}>
-              <FiX size={16} style={{pointerEvents: 'none'}} />{elt}
+              <FiX size={16} style={{ pointerEvents: 'none' }} />{elt}
             </button>
           )
         })}
@@ -119,7 +119,7 @@ const FilterBar = ({ leagues, countries, onFilterData }) => {
               value={elt}
               key={elt}
               onClick={closeButton}>
-              <FiX size={16} style={{pointerEvents: 'none'}} />{elt}
+              <FiX size={16} style={{ pointerEvents: 'none' }} />{elt}
             </button>
           )
         })}
@@ -127,31 +127,32 @@ const FilterBar = ({ leagues, countries, onFilterData }) => {
       <div className='flex-container-filter'>
         <form className='select-container'>
           {/* <div className='multiselect'> */}
-            <div className='selectBox' onClick={() => showCheckboxes('countries')}>
-              <select>
-                <option>All Countries</option>
-              </select>
-              <div className='overSelect'></div>
-            </div>
-            <div className='checkboxes-wrapper-countries'>
-              {countriesExpanded && <div className='checkboxes checkboxes-countries'>
-                {countriesArr.map(country => {
-                  return (
-                    <li
+          <div className='selectBox' onClick={() => showCheckboxes('countries')}>
+            <select>
+              <option>All Countries</option>
+            </select>
+            <div className='overSelect'></div>
+          </div>
+          <div className='checkboxes-wrapper-countries'>
+            {countriesExpanded && <div className='checkboxes checkboxes-countries'>
+              {countriesArr.map(country => {
+                return (
+                  <li
                     key={country}
                     className='list-element'>
-                        <label>{country}
-                          <input
-                            type='checkbox'
-                            value={country}
-                            checked={selectedCountries.includes(country)}
-                            onChange={getCountryValues} />
-                        </label>
-                    </li>
-                  )
-                })}
-              </div>}
-            </div>
+                    <label>
+                      <input
+                        type='checkbox'
+                        value={country}
+                        checked={selectedCountries.includes(country)}
+                        onChange={getCountryValues} />
+                      {country}
+                    </label>
+                  </li>
+                )
+              })}
+            </div>}
+          </div>
           {/* </div> */}
         </form>
         <form className='select-container'>
@@ -167,15 +168,16 @@ const FilterBar = ({ leagues, countries, onFilterData }) => {
                 {sportsSet.map((elt) => {
                   return (
                     <li
-                    key={elt}
-                    className='list-element'>
-                        <label>{elt}
-                          <input
-                            type='checkbox'
-                            value={elt}
-                            checked={selectedSports.includes(elt)}
-                            onChange={getSportValues} />
-                        </label>
+                      key={elt}
+                      className='list-element'>
+                      <label>
+                        <input
+                          type='checkbox'
+                          value={elt}
+                          checked={selectedSports.includes(elt)}
+                          onChange={getSportValues} />
+                        {elt}
+                      </label>
                     </li>
                   )
                 })}
