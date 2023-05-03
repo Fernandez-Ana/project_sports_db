@@ -1,0 +1,81 @@
+.leaguepage {
+    color: #fff;
+    height: max-content;
+    padding: 0;
+    margin: 0;
+    background-color: rgb(15, 15, 15);
+    article {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        img {
+            height: 90vh;
+            transform: translate(60%);
+            z-index: 1;
+            padding-bottom: 90px;
+            // position: sticky;
+            // top: 50px;
+            // left: 24vw;
+        }
+        h2 {
+            color: #E83539;
+            font-size: 8.2rem;
+            font-weight: 700;
+            width: 100%;
+            text-transform: uppercase;
+            margin-right: 35px;
+            text-align: right;
+            z-index: 2;
+            white-space: wrap;
+        } 
+    }
+    ul {
+        list-style: none;
+        padding-left: 15px;
+        a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 3rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            padding: 22px;
+            padding-left: 12px;
+            font-size: 3rem;
+            z-index: 3;
+            transition: transform .2s ease-out;
+            &:hover {
+                transform-origin: left;
+                transform: scale(1.45);
+            }
+        }
+        .stadium {
+            margin-left: 10px;
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 400;
+        }
+    }
+}
+
+// Mobile
+@media only screen and (max-width: 415px) {
+    .leaguepage {
+        article {
+            img {
+                height: 50vh;
+                transform: translate(80%);
+            }
+            h2 {
+                font-size: 2rem;
+            } 
+        }
+        ul {
+            a {
+                font-size: 1.2rem;
+                }
+            .stadium {
+                font-size: 0.75rem;
+            }
+        }
+    }
+}

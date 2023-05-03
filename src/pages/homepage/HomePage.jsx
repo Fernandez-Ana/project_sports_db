@@ -11,19 +11,24 @@ import FilterBar from "../../components/filterbar/FilterBar";
 import "./HomePage.scss";
 import home_img from '../../assets/img/home_img.png'
 import arrow from '../../assets/img/arrow.svg'
+import LeaguePage from "../leaguepage/LeaguePage";
 
 const HomePage = () => {
   // States for all leagues, all countries data from API, filtered leagues and search input
   const [leagues, setLeagues] = useState([]);
   const [countries, setCountries] = useState([]);
   const [filteredLeagues, setFilteredLeagues] = useState([]);
-  const [leagueSearch, setLeagueSearch] = useState('')
+  const [filterEmpty, setFilterEmpty] = useState(true);
+  const [leagueSearch, setLeagueSearch] = useState('');
 
   // Fetch all countries and all leagues data from API
   useEffect(() => {
     fetch("https://www.thesportsdb.com/api/v1/json/3/all_leagues.php")
       .then((res) => res.json())
-      .then((leagues) => setLeagues(leagues));
+      .then((leagues) => {
+        setLeagues(leagues)
+      })
+      ;
     fetch("https://www.thesportsdb.com/api/v1/json/3/all_countries.php")
       .then((res) => res.json())
       .then((countries) => setCountries(countries));
@@ -54,7 +59,10 @@ const HomePage = () => {
       }
     }
     setFilteredLeagues(filteredLeagues);
-    console.log(filteredLeagues);
+  }
+
+  const handleFilterEmpty = (boolean) => {
+    setFilterEmpty(boolean);
   }
 
   if (isObjEmpty(leagues) === true) {
@@ -62,7 +70,9 @@ const HomePage = () => {
   } else {
     return (
       <Fragment>
-        <NavBar leagueSearch={leagueSearch} setLeagueSearch={setLeagueSearch} />
+        <NavBar
+          leagueSearch={leagueSearch}
+          setLeagueSearch={setLeagueSearch} />
         <div>
           <section id='homeSection'>
             <img src={home_img} alt='baseball field' />
@@ -75,10 +85,17 @@ const HomePage = () => {
             <path d="m 331.52267,-42.429092 v -5.641864 h -2.73672 c -1.50518,0 -2.73671,-0.01638 -2.73671,-0.0364 0,-0.04644 7.24241,-12.192889 7.32369,-12.282773 0.05,-0.05532 7.49673,12.138506 7.49673,12.27574 0,0.02389 -1.19364,0.04343 -2.65253,0.04343 h -2.65252 v 5.641864 5.641864 h -2.02097 -2.02097 z" fill="#E83539" />
           </svg>
         </HashLink>
-        {/* <Link  smooth to='/'><img src={arrow} alt='arrow' className='arrow' /></Link> */}
-        <FilterBar leagues={leagues} countries={countries} onFilterData={handleFilterData} />
-        <SportsList leagues={leagues} countries={countries} filteredLeagues={filteredLeagues} leagueSearch={leagueSearch} />
-      </Fragment >
+        <FilterBar
+          leagues={leagues}
+          countries={countries}
+          onFilterData={handleFilterData}
+          onFilterEmpty={handleFilterEmpty} />
+        <SportsList
+          leagues={leagues}
+          filteredLeagues={filteredLeagues}
+          filterEmpty={filterEmpty}
+          leagueSearch={leagueSearch} />
+      </Fragment>
     );
   }
 };
