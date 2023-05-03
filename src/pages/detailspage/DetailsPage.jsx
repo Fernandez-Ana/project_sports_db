@@ -49,13 +49,13 @@ const DetailsPage = () => {
             <p>COMPETITIONS</p>
           </div>
           <div>
-            <h3>{detail.strLeague.toUpperCase()}</h3>
-            <h3>{detail.strLeague2.toUpperCase()}</h3>
-            <h3>{detail.strLeague3.toUpperCase()}</h3>
-            <h3>{detail.strLeague4.toUpperCase()}</h3>
-            <h3>{detail.strLeague5.toUpperCase()}</h3>
-            <h3>{detail.strLeague6.toUpperCase()}</h3>
-            <h3>{detail.strLeague7.toUpperCase()}</h3>
+            {detail.strLeague && <h3>{detail.strLeague === detail.strLeague.toUpperCase() ? detail.strLeague : detail.strLeague.toUpperCase()}</h3>}
+            {detail.strLeague2 && <h3>{detail.strLeague2 === detail.strLeague2.toUpperCase() ? detail.strLeague2 : detail.strLeague2.toUpperCase()}</h3>}
+            {detail.strLeague3 && <h3>{detail.strLeague3 === detail.strLeague3.toUpperCase() ? detail.strLeague3 : detail.strLeague3.toUpperCase()}</h3>}
+            {detail.strLeague4 && <h3>{detail.strLeague4 === detail.strLeague4.toUpperCase() ? detail.strLeague4 : detail.strLeague3.toUpperCase()}</h3>}
+            {detail.strLeague5 && <h3>{detail.strLeague5 === detail.strLeague5.toUpperCase() ? detail.strLeague3 : detail.strLeague5.toUpperCase()}</h3>}
+            {detail.strLeague6 && <h3>{detail.strLeague6 === detail.strLeague6.toUpperCase() ? detail.strLeague6 : detail.strLeague6.toUpperCase()}</h3>}
+            {detail.strLeague7 && <h3>{detail.strLeague7 === detail.strLeague7.toUpperCase() ? detail.strLeague3 : detail.strLeague7.toUpperCase()}</h3>}
           </div>
         </section>
         <section className='team_description_section'>
@@ -65,7 +65,6 @@ const DetailsPage = () => {
           <div>
             <p>{detail.strDescriptionEN}</p>
           </div>
-
         </section>
         <section className='badge_img'>
           <div><img src={detail.strTeamBadge} alt={detail.strTeam} /></div>
