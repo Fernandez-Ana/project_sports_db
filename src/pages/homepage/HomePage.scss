@@ -1,14 +1,14 @@
-section {
+.homepage {
     display: flex;
     align-items: center;
     padding-bottom: 5vh;
 }
 
-section img {
+.homepage img {
     width: 100%;
 }
 
-section h2 {
+.homepage h2 {
     color: #E83539;
     font-size: 16rem;
     text-transform: uppercase;

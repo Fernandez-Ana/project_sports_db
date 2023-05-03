@@ -74,7 +74,7 @@ const HomePage = () => {
           leagueSearch={leagueSearch}
           setLeagueSearch={setLeagueSearch} />
         <div>
-          <section id='homeSection'>
+          <section className="homepage" id='homeSection'>
             <img src={home_img} alt='baseball field' />
             <h2>Find your league</h2>
           </section>

@@ -35,8 +35,7 @@ const LeaguePage = () => {
 
   if (isObjEmpty(teams) === true) {
     return <div>loading</div>;
-  }
-  else {
+  } else {
     return (
       <Fragment>
         <NavBar />
