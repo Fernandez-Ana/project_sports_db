@@ -1,7 +1,6 @@
 .flex-container {
   display: flex;
   justify-content: space-between;
-  background-color: black;
   height: 20rem;
   padding-block-start: 2rem;
 }
@@ -40,12 +39,12 @@
 }
 
 .overSelect {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-  }
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
 
 .checkboxes {
   color: white;
