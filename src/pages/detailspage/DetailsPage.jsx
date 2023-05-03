@@ -2,6 +2,8 @@
 import { Fragment } from 'react';
 import { useLocation } from 'react-router-dom';
 import NavBar from '../../components/navbar/Navbar';
+import randomStadiumImgUrl from '../../assets/img/random_stadium.png'
+
 // Styling
 import './DetailsPage.scss';
 
@@ -10,6 +12,13 @@ const DetailsPage = () => {
   // Get the location object from the router
   const location = useLocation()
   const detail = location.state
+
+
+  const websiteClick = () => {
+    if (detail.strWebsite === "" || detail.strFacebook === "" || detail.strTwitter === "" || detail.strInstagram === "" || detail.strYoutube === "") {
+      window.open('/no-website');
+    }
+  };
 
   return (
     <Fragment>
@@ -27,8 +36,12 @@ const DetailsPage = () => {
             <h3>{detail.strSport.toUpperCase()}</h3>
             <p>Sport</p>
           </div>
-          <div className='stadium_img'>
-            <img src={detail.strStadiumThumb} alt={detail.strStadium} />
+          <div className="stadium_img">
+            {detail.strStadiumThumb ? (
+              <img src={detail.strStadiumThumb} alt={detail.strStadium} />
+            ) : (
+              <img src={randomStadiumImgUrl} alt="Random Stadium" />
+            )}
           </div>
         </section>
         <section className='competitions_section'>
@@ -61,7 +74,7 @@ const DetailsPage = () => {
           <div className='headline_stadium'>
             <h3>STADIUM</h3>
           </div>
-          <section>
+          <section className='stadium_flex'>
             <div>
               <p>{detail.strStadiumDescription}</p>
             </div>
@@ -73,12 +86,14 @@ const DetailsPage = () => {
             </div>
           </section>
         </section>
-        <footer className='details_footer_section'>
-          <a href={detail.strWebsite}>WEBSITE</a>
-          <a href={detail.strFacebook}>FACEBOOK</a>
-          <a href={detail.strTwitter}>TWITTER</a>
-          <a href={detail.strInstagram}>INSTAGRAM</a>
-          <a href={detail.strYoutube}>YOUTUBE</a>
+        <footer className='details_footer_section' >
+
+          {/* <a className='underline' onClick={websiteClick}>WEBSITE</a> */}
+          <a href={'https://' + detail.strWebsite} target='_blank' className='underline' onClick={websiteClick}>WEBSITE</a>
+          <a href={'https://' + detail.strFacebook} target='_blank' className='underline' onClick={websiteClick}>FACEBOOK</a>
+          <a href={'https://' + detail.strTwitter} target='_blank' className='underline' onClick={websiteClick}>TWITTER</a>
+          <a href={'https://' + detail.strInstagram} target='_blank' className='underline' onClick={websiteClick}>INSTAGRAM</a>
+          <a href={'https://' + detail.strYoutube} target='_blank' className='underline' onClick={websiteClick}>YOUTUBE</a>
         </footer>
       </section>
     </Fragment>
