@@ -36,7 +36,7 @@ const LeaguePage = () => {
   if (isObjEmpty(teams).length === 0) {
     return <div>loading</div>;
   } else if (isObjEmpty(teams) === true) {
-    return <div><NavBar /><h1>Leider konnten wir keine Teams finden </h1></div>;
+    return <div><NavBar /><h1>Leider konnten wir nichts finden </h1></div>;
   }
 
   else {
