@@ -140,7 +140,7 @@ const FilterBar = ({ leagues, countries, onFilterData, onFilterEmpty }) => {
                 return (
                   <li
                     key={country}
-                    className='list-element'>
+                    className='list-element-dropdown'>
                     <label>
                       <input
                         type='checkbox'
@@ -169,7 +169,7 @@ const FilterBar = ({ leagues, countries, onFilterData, onFilterEmpty }) => {
                   return (
                     <li
                       key={elt}
-                      className='list-element'>
+                      className='list-element-dropdown'>
                       <label>
                         <input
                           type='checkbox'
