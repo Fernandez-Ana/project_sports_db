@@ -13,11 +13,7 @@ const LeaguePage = () => {
   let leagueParams = useParams();
   // Setting state for data fetch
   const [teams, setTeams] = useState([]);
-  // Checking if object is empty for async fetch
-  const isObjEmpty = (teams) => {
-    return Object.keys(teams).length === 0;
-  };
-  
+
 
   // Fetching data from API for display teams and detail page
   useEffect(() => {
@@ -30,13 +26,17 @@ const LeaguePage = () => {
       });
   }, [leagueParams.leaguename]);
 
-  // 
-  console.log(leagueParams.strSport)
+  // Checking if object is empty for async fetch
+  const isObjEmpty = (teams) => {
+    return Object.keys(teams || {}).length === 0;
+  };
 
-// Displays "Loading" if Obj is Empty
+
+
   if (isObjEmpty(teams) === true) {
     return <div>loading</div>;
-  } else if (isObjEmpty(teams) !== true) {
+  }
+  else {
     return (
       <Fragment>
         <NavBar />
