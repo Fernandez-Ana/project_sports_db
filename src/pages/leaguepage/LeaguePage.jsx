@@ -31,8 +31,6 @@ const LeaguePage = () => {
     return Object.keys(teams || {}).length === 0;
   };
 
-
-
   if (isObjEmpty(teams) === true) {
     return <div>loading</div>;
   }
