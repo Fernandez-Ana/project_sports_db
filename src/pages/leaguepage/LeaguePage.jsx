@@ -41,11 +41,11 @@ const LeaguePage = () => {
       <Fragment>
         <NavBar />
         <section className="leaguepage">
-        <article>
-        <img src={leagueImg} alt="leaguepage"/>
-        <h2>{leagueParams.leaguename}</h2>
-        <h3>{leagueParams.strSport}</h3>
-        </article>
+          <article>
+            <img src={leagueImg} alt="leaguepage" />
+            <h2>{leagueParams.leaguename}</h2>
+            <h3>{leagueParams.strSport}</h3>
+          </article>
           <ul>
             {teams.map((team) => {
               return (

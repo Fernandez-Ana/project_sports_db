@@ -18,33 +18,21 @@ section h2 {
     // padding: 15vh 0;
 }
 
-.linkContainer {
-    
-    background-color: pink;
-    width: 100%;
-}
-
-.arrow {
+svg {
     position: fixed;
     bottom: 5vh;
     left: 91%;
-    // background-color: aquamarine;
-    fill: green !important;
 }
 
+svg rect {
+    transition: all .4s ease;
+}
 
-
-svg path{
-    background-color: yellow;
+svg rect {
+    fill: rgb(15, 15, 15);
     
 }
 
-svg:hover {
-    // fill: #E83539;
-    filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
-    width: 300px;
-    fill: purple !important;
-    background-color: #E83539;
-    stroke: aqua;
-    z-index: 1;
+svg:hover rect{
+    fill: #E83539;
 }
