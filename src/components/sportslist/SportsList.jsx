@@ -25,26 +25,39 @@ const SportsList = ({ leagues, filteredLeagues, leagueSearch, filterEmpty }) => 
     })
   }
 
+  const groupLeaguesByFirstLetter = leagues => {
+    return leagues.reduce((acc, league) => {
+      const firstLetter = league.strLeague[0].toUpperCase();
+      if (!acc[firstLetter]) {
+        acc[firstLetter] = [];
+      }
+      acc[firstLetter].push(league);
+      return acc;
+    }, {});
+  };
+
+
+
+
   return (
     <Fragment>
-      <Link to="/leaguepage">League Page</Link>
-      <section>
+      <section className='league-section'>
         <ul>
           {filterEmpty ? (
             allLeaguesArr.map(league => (
-              <li key={league.idLeague}>
-                <Link to={`/${league.strLeague}`}>
-                  {league.strLeague}
-                  <span>{league.strSport}</span>
+              <li key={league.idLeague} className='list-element'>
+                <Link to={`/${league.strLeague}`} className='league-link'>
+                  <span className='league-link-league'>{league.strLeague}</span>
+                  <span className='league-link-sport'> {league.strSport}</span>
                 </Link>
               </li>
             ))
           ) : (
             filteredLeaguesArr.map(league => (
-              <li key={league.idLeague}>
-                <Link to={`/${league.strLeague}`}>
-                  {league.strLeague}
-                  <span>{league.strSport}</span>
+              <li key={league.idLeague} className='list-element'>
+                <Link to={`/${league.strLeague}`} className='league-link'>
+                  <span className='league-link-league'>{league.strLeague}</span>
+                  <span className='league-link-sport'> {league.strSport}</span>
                 </Link>
               </li>
             ))

@@ -65,7 +65,6 @@ const HomePage = () => {
   } else {
     return (
       <Fragment>
-        {/* <h1>Home Page</h1> */}
         <NavBar
           leagueSearch={leagueSearch}
           setLeagueSearch={setLeagueSearch} />

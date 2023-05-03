@@ -1,6 +1,6 @@
 // Infrastructure
 import { Fragment, useEffect } from "react";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useState } from "react";
 // Styling
 import "./LeaguePage.scss";
