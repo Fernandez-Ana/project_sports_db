@@ -7,7 +7,7 @@ import "./SportsList.scss";
 const SportsList = ({ leagues, filteredLeagues, leagueSearch, filterEmpty }) => {
 
   // Sorting leagues alphabetically and data arrays for rendering list
-  let allLeaguesArr = leagues.leagues.sort((x, y) => x.strLeague > y.strLeague ? 1 : -1,);
+  let allLeaguesArr = leagues.sort((x, y) => x.strLeague > y.strLeague ? 1 : -1,);
   let filteredLeaguesArr = filteredLeagues.sort((x, y) => x.strLeague > y.strLeague ? 1 : -1,);
 
   // Filtering leagues according to search input
@@ -25,8 +25,9 @@ const SportsList = ({ leagues, filteredLeagues, leagueSearch, filterEmpty }) => 
     })
   }
 
-  const groupLeaguesByFirstLetter = leagues => {
-    return leagues.reduce((acc, league) => {
+  // Function to group leagues by first letter of league name for rendering
+  const groupByFirstLetter = (arr) => {
+    return arr.reduce((acc, league) => {
       const firstLetter = league.strLeague[0].toUpperCase();
       if (!acc[firstLetter]) {
         acc[firstLetter] = [];
@@ -36,34 +37,25 @@ const SportsList = ({ leagues, filteredLeagues, leagueSearch, filterEmpty }) => 
     }, {});
   };
 
-
-
+  const leaguesToRender = filterEmpty ? groupByFirstLetter(allLeaguesArr) : groupByFirstLetter(filteredLeaguesArr);
 
   return (
     <Fragment>
-      <section className='league-section'>
-        <ul>
-          {filterEmpty ? (
-            allLeaguesArr.map(league => (
-              <li key={league.idLeague} className='list-element'>
-                <Link to={`/${league.strLeague}`} className='league-link'>
-                  <span className='league-link-league'>{league.strLeague}</span>
-                  <span className='league-link-sport'> {league.strSport}</span>
+      {Object.entries(leaguesToRender).map(([letter, leaguesForLetter]) => (
+        <section className="league-section" key={letter}>
+          <h2>{letter}</h2>
+          <ul>
+            {leaguesForLetter.map((league) => (
+              <li key={league.idLeague} className="list-element">
+                <Link to={`/${league.strLeague}`} className="league-link">
+                  <span className="league-link-league">{league.strLeague}</span>
+                  <span className="league-link-sport"> {league.strSport}</span>
                 </Link>
               </li>
-            ))
-          ) : (
-            filteredLeaguesArr.map(league => (
-              <li key={league.idLeague} className='list-element'>
-                <Link to={`/${league.strLeague}`} className='league-link'>
-                  <span className='league-link-league'>{league.strLeague}</span>
-                  <span className='league-link-sport'> {league.strSport}</span>
-                </Link>
-              </li>
-            ))
-          )}
-        </ul>
-      </section>
+            ))}
+          </ul>
+        </section>
+      ))}
     </Fragment>
   );
 };

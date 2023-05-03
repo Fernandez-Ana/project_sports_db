@@ -1,16 +1,18 @@
 .detailspage {
-    // background-color: black;
     color: white;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    margin-top: 15rem;
+    margin-right: 3rem;
 
     h2 {
         color: #E83539;
-        font-size: 7rem;
-        margin-bottom: -25rem;
+        font-size: 9.6rem;
+        margin-bottom: -28rem;
         z-index: 1;
+        text-align: center;
     }
 }
 
@@ -27,20 +29,21 @@
     padding-top: 35rem;
 
     h3 {
-        font-size: 2rem;
+        font-size: 3.6rem;
         width: 30%;
         margin: 0 auto;
     }
 
     p {
         padding-bottom: 2rem;
+        font-size: 1.8rem;
     }
 }
 
 .stadium_img {
     img {
-        width: 45rem;
-        height: 30rem;
+        width: 65rem;
+        height: 40rem;
     }
 }
 
@@ -48,17 +51,19 @@
     display: flex;
     gap: 2rem;
     text-align: left;
-    padding: 4rem 0;
-    margin-left: 30rem;
+    align-items: flex-start;
+    padding: 5rem 0;
+    margin-left: 80rem;
 
     p {
         margin: 0;
-        padding-top: 0.9rem;
+        font-size: 1.8rem;
+        padding-top: 1.5rem;
     }
 
     h3 {
         margin: 0;
-        font-size: 2rem;
+        font-size: 3.6rem;
         padding-bottom: 1rem;
     }
 }
@@ -68,33 +73,38 @@
     gap: 5rem;
     padding-bottom: 20rem;
     margin-right: 3rem;
-    margin-top: 5rem;
+    margin-top: 7rem;
 
     div:nth-of-type(1) {
         width: 30%;
 
         p {
-            font-size: 5rem;
-            -webkit-text-stroke: 1px #E83539;
-            color: black;
+            font-size: 9.6rem;
+            -webkit-text-stroke: 0.2rem #E83539;
+            color: rgb(15, 15, 15);
             transform: rotate(90deg) translate(9rem);
             margin: 0;
+            padding-left: 4rem;
         }
     }
 
     div:nth-of-type(2) {
         width: 100%;
         column-count: 2;
-        column-gap: 3em;
+        column-gap: 5rem;
+        margin-bottom: 20rem;
 
         p {
             margin: 0;
+            font-size: 1.8rem;
         }
     }
 }
 
 .badge_img {
     text-align: center;
+    margin-top: 35rem;
+    margin-bottom: 10rem;
 
     img {
         width: 40%;
@@ -103,65 +113,78 @@
 
 .stadium_description_section {
     margin-left: 3rem;
+    display: block;
+}
 
-    section {
-        display: flex;
+.stadium_flex {
+    display: flex;
 
+    div:nth-of-type(1) {
+        width: 70%;
+        column-count: 2;
+        column-gap: 5rem;
+        margin-right: 3rem;
 
-        div:nth-of-type(1) {
-            width: 70%;
-            column-count: 2;
-            column-gap: 3em;
-            margin-right: 3rem;
-
-            h3 {
-                font-size: 1rem;
-            }
-
-            p {
-                margin: 0;
-            }
-        }
-
-        div:nth-of-type(2) {
-            width: 10%;
-            text-align: center;
-            margin: 0 auto;
+        p {
+            margin: 0;
+            font-size: 1.8rem;
         }
     }
 }
 
 .headline_stadium {
     padding-top: 5rem;
+    padding-bottom: 3rem;
 
     h3 {
-        font-size: 3rem;
+        font-size: 6rem;
     }
 }
 
 .capacity_section {
     padding-top: 2rem;
+    width: 20%;
+    text-align: center;
+    margin: 0 auto;
 
     h3 {
-        font-size: 2rem;
+        font-size: 3.6rem;
         margin: 0;
     }
 
     p {
-        padding-bottom: 1rem;
+        padding-bottom: 3.5rem;
+        padding-top: 0.5rem;
+        font-size: 1.8rem;
     }
 }
 
 .details_footer_section {
     display: flex;
     flex-direction: column;
-    padding: 5rem 0;
+    padding: 14rem 0;
 
     a {
         text-decoration: none;
         color: white;
-        font-size: 2rem;
+        font-size: 3.6rem;
         font-weight: 700;
-        padding: 0.5rem 0;
+        margin: 0.5rem 0;
     }
+}
+
+.underline {
+    display: inline-block;
+    background-image: linear-gradient(#E83539 0 0);
+    background-position: 0 100%;
+    background-size: 0% 15px;
+    background-repeat: no-repeat;
+    transition:
+        background-size 0.3s,
+        background-position 0s 0.3s;
+}
+
+.underline:hover {
+    background-position: 0 100%;
+    background-size: 100% 15px;
 }

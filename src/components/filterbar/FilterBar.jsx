@@ -1,10 +1,10 @@
 // Infrastructure
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 // Styling
 import './FilterBar.scss';
 import { FiX } from "react-icons/fi";
 
-const FilterBar = ({ leagues, countries, onFilterData, onFilterEmpty }) => {
+const FilterBar = ({ leagues, onFilterData, onFilterEmpty }) => {
   // Different states for display and hide dropdown menu
   const [countriesExpanded, setCountriesExpanded] = useState(false);
   const [sportsExpanded, setSportsExpanded] = useState(false);
@@ -12,11 +12,12 @@ const FilterBar = ({ leagues, countries, onFilterData, onFilterEmpty }) => {
   const [selectedCountries, setSelectedCountries] = useState([]);
   const [selectedSports, setSelectedSports] = useState([]);
 
-  const countriesArr = countries.countries.map(country => country.name_en).sort((x, y) => x > y ? 1 : -1,);
-  const leaguesArr = leagues.leagues;
+  // Arrays for dropdown menus and sorting them alphabetically
+  const countriesArr = leagues.map(elt => elt.strCountry).sort((x, y) => x > y ? 1 : -1,);
+  const countriesSet = [...new Set(countriesArr)];
 
-  const sportsArray = leaguesArr.map(elt => elt.strSport).sort((x, y) => x > y ? 1 : -1,);
-  const sportsSet = [...new Set(sportsArray)];
+  const sportsArr = leagues.map(elt => elt.strSport).sort((x, y) => x > y ? 1 : -1,);
+  const sportsSet = [...new Set(sportsArr)];
 
   // Function to show checkboxes when selected and hide when deselected
   function showCheckboxes(selectBox) {
@@ -87,7 +88,7 @@ const FilterBar = ({ leagues, countries, onFilterData, onFilterEmpty }) => {
   // Function to pass data to parent component and trigger a new API call with the selected filters
   useEffect(() => {
     if (selectedCountries.length === 0 && selectedSports.length > 0) {
-      onFilterData(countriesArr, selectedSports);
+      onFilterData(countriesSet, selectedSports);
     } else if (selectedCountries.length > 0 && selectedSports.length === 0) {
       onFilterData(selectedCountries, sportsSet);
     } else if (selectedCountries.length > 0 && selectedSports.length > 0) {
@@ -97,6 +98,34 @@ const FilterBar = ({ leagues, countries, onFilterData, onFilterEmpty }) => {
     }
 
   }, [selectedCountries, selectedSports]);
+
+// Function to close dropdown menus when clicking outside of them
+  const countriesWrapperRef = useRef(null);
+  const sportsWrapperRef = useRef(null);
+
+  const handleClickOutside = (event) => {
+    if (
+      countriesExpanded &&
+      countriesWrapperRef.current &&
+      !countriesWrapperRef.current.contains(event.target)
+    ) {
+      showCheckboxes('countries');
+    }
+    if (
+      sportsExpanded &&
+      sportsWrapperRef.current &&
+      !sportsWrapperRef.current.contains(event.target)
+    ) {
+      showCheckboxes('sports');
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [countriesExpanded, sportsExpanded]);
 
   return (
     <div className='flex-container'>
@@ -134,9 +163,9 @@ const FilterBar = ({ leagues, countries, onFilterData, onFilterEmpty }) => {
             </select>
             <div className='overSelect'></div>
           </div>
-          <div className='checkboxes-wrapper-countries'>
+          <div className='checkboxes-wrapper-countries' ref={countriesWrapperRef}>
             {countriesExpanded && <div className='checkboxes checkboxes-countries'>
-              {countriesArr.map(country => {
+              {countriesSet.map(country => {
                 return (
                   <li
                     key={country}
@@ -163,7 +192,7 @@ const FilterBar = ({ leagues, countries, onFilterData, onFilterEmpty }) => {
               </select>
               <div className='overSelect'></div>
             </div>
-            <div className='checkboxes-wrapper-sports'>
+            <div className='checkboxes-wrapper-sports' ref={sportsWrapperRef}>
               {sportsExpanded && <div className='checkboxes checkboxes-sports'>
                 {sportsSet.map((elt) => {
                   return (
