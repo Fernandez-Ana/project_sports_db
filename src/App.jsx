@@ -1,7 +1,6 @@
 //Infrastructure
 import { Fragment } from "react";
 import { Routes, Route } from "react-router-dom";
-import { useState } from "react";
 // Components
 import HomePage from "./pages/homepage/HomePage";
 import LeaguePage from "./pages/leaguepage/LeaguePage";

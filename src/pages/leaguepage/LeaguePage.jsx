@@ -10,7 +10,7 @@ import leagueImg from '../../assets/img/league_img.png'
 
 const LeaguePage = () => {
   // Getting league name from url
-  let leagueParams = useParams();
+  const leagueParams = useParams();
   // Setting state for data fetch
   const [teams, setTeams] = useState([]);
 
@@ -34,9 +34,7 @@ const LeaguePage = () => {
     return <div>loading</div>;
   } else if (isObjEmpty(teams) === true) {
     return <div><NavBar /><h1>Leider konnten wir nichts finden </h1></div>;
-  }
-
-  else {
+  } else {
     return (
       <Fragment>
         <NavBar />
@@ -44,7 +42,7 @@ const LeaguePage = () => {
         <article>
         <img src={leagueImg} alt="leaguepage"/>
         <h2>{leagueParams.leaguename}</h2>
-        <h3 className="sport-type">{leagueParams.strSport}</h3>
+        <h3 className="sport-type">{teams[0].strSport}</h3>
         </article>
           <ul>
             {teams.map((team) => {
