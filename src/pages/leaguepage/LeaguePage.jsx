@@ -1,6 +1,6 @@
 // Infrastructure
 import { Fragment, useEffect } from "react";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useState } from "react";
 // Styling
 import "./LeaguePage.scss";
@@ -25,12 +25,16 @@ const LeaguePage = () => {
 
   // Checking if object is empty for async fetch
   const isObjEmpty = (teams) => {
-    return Object.keys(teams).length === 0;
+
+    return Object.keys(teams || {}).length === 0;
   };
+
+
 
   if (isObjEmpty(teams) === true) {
     return <div>loading</div>;
-  } else {
+  }
+  else {
     return (
       <Fragment>
         <h1>League Page</h1>

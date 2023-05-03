@@ -13,7 +13,8 @@ const HomePage = () => {
   const [leagues, setLeagues] = useState([]);
   const [countries, setCountries] = useState([]);
   const [filteredLeagues, setFilteredLeagues] = useState([]);
-  const [leagueSearch, setLeagueSearch] = useState('')
+  const [filterEmpty, setFilterEmpty] = useState(true);
+  const [leagueSearch, setLeagueSearch] = useState('');
 
   // Fetch all countries and all leagues data from API
   useEffect(() => {
@@ -28,7 +29,6 @@ const HomePage = () => {
       .then((countries) => setCountries(countries));
   }, []);
 
-  console.log(leagues)
   // Checking if object is empty for async fetch
   const isObjEmpty = (leagues) => {
     return Object.keys(leagues).length === 0;
@@ -54,7 +54,10 @@ const HomePage = () => {
       }
     }
     setFilteredLeagues(filteredLeagues);
-    console.log(filteredLeagues);
+  }
+
+  const handleFilterEmpty = (boolean) => {
+    setFilterEmpty(boolean);
   }
 
   if (isObjEmpty(leagues) === true) {
@@ -62,10 +65,19 @@ const HomePage = () => {
   } else {
     return (
       <Fragment>
-        {/* <h1>Home Page</h1> */}
-        <NavBar leagueSearch={leagueSearch} setLeagueSearch={setLeagueSearch} />
-        <FilterBar leagues={leagues} countries={countries} onFilterData={handleFilterData} />
-        <SportsList leagues={leagues} countries={countries} filteredLeagues={filteredLeagues} leagueSearch={leagueSearch} />
+        <NavBar
+          leagueSearch={leagueSearch}
+          setLeagueSearch={setLeagueSearch} />
+        <FilterBar
+          leagues={leagues}
+          countries={countries}
+          onFilterData={handleFilterData}
+          onFilterEmpty={handleFilterEmpty} />
+        <SportsList
+          leagues={leagues}
+          filteredLeagues={filteredLeagues}
+          filterEmpty={filterEmpty}
+          leagueSearch={leagueSearch} />
       </Fragment>
     );
   }

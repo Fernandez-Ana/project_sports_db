@@ -65,7 +65,7 @@ const DetailsPage = () => {
             <div>
               <p>{detail.strStadiumDescription}</p>
             </div>
-            <div>
+            <div className='capacity_section'>
               <h3>{detail.strStadium.toUpperCase()}</h3>
               <p>Home</p>
               <h3>{detail.intStadiumCapacity}</h3>
@@ -73,8 +73,12 @@ const DetailsPage = () => {
             </div>
           </section>
         </section>
-        <footer>
-
+        <footer className='details_footer_section'>
+          <a href={detail.strWebsite}>WEBSITE</a>
+          <a href={detail.strFacebook}>FACEBOOK</a>
+          <a href={detail.strTwitter}>TWITTER</a>
+          <a href={detail.strInstagram}>INSTAGRAM</a>
+          <a href={detail.strYoutube}>YOUTUBE</a>
         </footer>
       </section>
     </Fragment>

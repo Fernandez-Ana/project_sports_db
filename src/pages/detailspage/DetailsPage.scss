@@ -1,7 +1,6 @@
 .detailspage {
     background-color: black;
     color: white;
-    // padding-top: 10rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -49,13 +48,18 @@
     display: flex;
     gap: 2rem;
     text-align: left;
+    padding: 4rem 0;
+    margin-left: 30rem;
 
     p {
         margin: 0;
+        padding-top: 0.9rem;
     }
 
     h3 {
         margin: 0;
+        font-size: 2rem;
+        padding-bottom: 1rem;
     }
 }
 
@@ -128,7 +132,36 @@
 }
 
 .headline_stadium {
+    padding-top: 5rem;
+
     h3 {
         font-size: 3rem;
+    }
+}
+
+.capacity_section {
+    padding-top: 2rem;
+
+    h3 {
+        font-size: 2rem;
+        margin: 0;
+    }
+
+    p {
+        padding-bottom: 1rem;
+    }
+}
+
+.details_footer_section {
+    display: flex;
+    flex-direction: column;
+    padding: 5rem 0;
+
+    a {
+        text-decoration: none;
+        color: white;
+        font-size: 2rem;
+        font-weight: 700;
+        padding: 0.5rem 0;
     }
 }
