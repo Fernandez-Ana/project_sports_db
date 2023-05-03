@@ -1,9 +1,12 @@
 // Infrastructure
 import { Fragment, useEffect } from "react";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useState } from "react";
+import NavBar from "../../components/navbar/Navbar";
 // Styling
 import "./LeaguePage.scss";
+// Image
+import leagueImg from '../../assets/img/league_img.png'
 
 const LeaguePage = () => {
   // Getting league name from url
@@ -25,24 +28,31 @@ const LeaguePage = () => {
       .then((teams) => {
         setTeams(teams.teams);
       });
-  }, []);
+  }, [leagueParams.leaguename]);
+
+  // 
+  console.log(leagueParams.strSport)
 
 // Displays "Loading" if Obj is Empty
   if (isObjEmpty(teams) === true) {
     return <div>loading</div>;
-  } else {
+  } else if (isObjEmpty(teams) !== true) {
     return (
       <Fragment>
-        <h1>League Page</h1>
-        <Link to="/detailspage">Details Page</Link>
-        <section>
+        <NavBar />
+        <section className="leaguepage">
+        <article>
+        <img src={leagueImg} alt="leaguepage"/>
+        <h2>{leagueParams.leaguename}</h2>
+        <h3>{leagueParams.strSport}</h3>
+        </article>
           <ul>
             {teams.map((team) => {
               return (
                 <li key={team.idTeam}>
                   <Link to={`/${team.strTeam}/detailspage`} state={team}>
                     {team.strTeam}
-                    <span>{team.strStadiumLocation}</span>
+                    <span className="stadium">{team.strStadiumLocation}</span>
                   </Link>
                 </li>
               );
