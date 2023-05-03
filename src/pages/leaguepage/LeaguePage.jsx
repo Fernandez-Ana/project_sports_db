@@ -28,23 +28,27 @@ const LeaguePage = () => {
 
   // Checking if object is empty for async fetch
   const isObjEmpty = (teams) => {
-    return Object.keys(teams || {}).length === 0;
+    return teams ? Object.keys(teams).length === 0 : true;
   };
 
 
 
-  if (isObjEmpty(teams) === true) {
+  if (isObjEmpty(teams).length === 0) {
     return <div>loading</div>;
-  } else {
+  } else if (isObjEmpty(teams) === true) {
+    return <div><NavBar /><h1>Leider konnten wir keine Teams finden </h1></div>;
+  }
+
+  else {
     return (
       <Fragment>
         <NavBar />
         <section className="leaguepage">
-        <article>
-        <img src={leagueImg} alt="leaguepage"/>
-        <h2>{leagueParams.leaguename}</h2>
-        <h3>{leagueParams.strSport}</h3>
-        </article>
+          <article>
+            <img src={leagueImg} alt="leaguepage" />
+            <h2>{leagueParams.leaguename}</h2>
+            <h3>{leagueParams.strSport}</h3>
+          </article>
           <ul>
             {teams.map((team) => {
               return (
