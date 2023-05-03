@@ -10,20 +10,20 @@
         align-items: center;
         img {
             height: 90vh;
-            transform: translate(60%);
+            // transform: translate(40%);
             z-index: 1;
             padding-bottom: 90px;
-            // position: sticky;
-            // top: 50px;
-            // left: 24vw;
+            object-fit: cover;
+            position: sticky;
+            left: 12vw;
         }
         h2 {
             color: #E83539;
-            font-size: 8.2rem;
+            font-size: 12.4rem;
             font-weight: 700;
             width: 100%;
             text-transform: uppercase;
-            margin-right: 35px;
+            margin-right: 48px;
             text-align: right;
             z-index: 2;
             white-space: wrap;
@@ -39,7 +39,7 @@
             font-weight: 600;
             text-transform: uppercase;
             padding: 22px;
-            padding-left: 12px;
+            padding-left: 24px;
             font-size: 3rem;
             z-index: 3;
             transition: transform .2s ease-out;
@@ -62,19 +62,18 @@
     .leaguepage {
         article {
             img {
-                height: 50vh;
-                transform: translate(80%);
+                height: 60vh;
             }
             h2 {
-                font-size: 2rem;
+                font-size: 4.5rem;
             } 
         }
         ul {
             a {
-                font-size: 1.2rem;
+                font-size: 2rem;
                 }
             .stadium {
-                font-size: 0.75rem;
+                font-size: 1.1rem;
             }
         }
     }

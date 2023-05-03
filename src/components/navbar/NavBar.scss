@@ -1,10 +1,17 @@
+html {
+    background-color: rgb(15, 15, 15);
+    color: #fff;
+}
+
 .navContainer {
+    // background-color: rgb(15, 15, 15);
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: sticky;
     top: 0;
-    padding: 5vh 3vw;
+    padding: 3vh 3vw;
+    z-index: 3;
 }
 
 .logoContainer>img, a {
@@ -32,7 +39,7 @@
 
 .searchContainer input {
     width: 10px;
-    background: rgba(0, 0, 0, 0);
+    background: rgba(0, 0, 0, 0.067);
     border: none;
     outline: none;
     color: rgb(255, 255, 255);
@@ -42,4 +49,16 @@
 
 .searchContainer:hover input {
     width: 180px;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .navContainer {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+    }
+    .searchContainer {
+        margin-top: 20px;
+    }
 }

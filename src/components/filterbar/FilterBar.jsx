@@ -129,7 +129,7 @@ const FilterBar = ({ leagues, countries, onFilterData, onFilterEmpty }) => {
       <div className='flex-container-filter'>
         <form className='select-container'>
           <div className='selectBox' onClick={() => showCheckboxes('countries')}>
-            <select>
+            <select className='selecting'>
               <option>All Countries</option>
             </select>
             <div className='overSelect'></div>
@@ -158,7 +158,7 @@ const FilterBar = ({ leagues, countries, onFilterData, onFilterEmpty }) => {
         <form className='select-container'>
           <div className='multiselect'>
             <div className='selectBox' onClick={() => showCheckboxes('sports')}>
-              <select>
+              <select className='selecting'>
                 <option>All Sports</option>
               </select>
               <div className='overSelect'></div>
@@ -170,7 +170,7 @@ const FilterBar = ({ leagues, countries, onFilterData, onFilterEmpty }) => {
                     <li
                       key={elt}
                       className='list-element-dropdown'>
-                      <label>
+                      <label className='checkbox-value'>
                         <input
                           type='checkbox'
                           value={elt}
