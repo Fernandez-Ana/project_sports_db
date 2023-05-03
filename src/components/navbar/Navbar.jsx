@@ -15,7 +15,7 @@ const NavBar = (props) => {
 
 	return (
 		<Fragment>
-			<nav className='navContainer'>
+			<nav className='navContainer' id='nav'>
 				<div className='logoContainer'>
 					<img src={logo} alt='sports_db_logo' />
 					<Link to='/'>

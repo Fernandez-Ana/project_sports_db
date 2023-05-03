@@ -1,0 +1,50 @@
+section {
+    display: flex;
+    align-items: center;
+    padding-bottom: 5vh;
+}
+
+section img {
+    width: 100%;
+}
+
+section h2 {
+    color: #E83539;
+    font-size: 16rem;
+    text-transform: uppercase;
+    margin: 0vh 3vw 0 -50%;
+    text-align: right;
+    width: 100%;
+    // padding: 15vh 0;
+}
+
+.linkContainer {
+    
+    background-color: pink;
+    width: 100%;
+}
+
+.arrow {
+    position: fixed;
+    bottom: 5vh;
+    left: 91%;
+    // background-color: aquamarine;
+    fill: green !important;
+}
+
+
+
+svg path{
+    background-color: yellow;
+    
+}
+
+svg:hover {
+    // fill: #E83539;
+    filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
+    width: 300px;
+    fill: purple !important;
+    background-color: #E83539;
+    stroke: aqua;
+    z-index: 1;
+}
