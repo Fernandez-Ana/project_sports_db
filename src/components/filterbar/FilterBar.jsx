@@ -4,8 +4,7 @@ import { useState, useEffect } from 'react';
 import './FilterBar.scss';
 import { FiX } from "react-icons/fi";
 
-const FilterBar = ({ leagues, countries, onFilterData }) => {
-
+const FilterBar = ({ leagues, countries, onFilterData, onFilterEmpty }) => {
   // Different states for display and hide dropdown menu
   const [countriesExpanded, setCountriesExpanded] = useState(false);
   const [sportsExpanded, setSportsExpanded] = useState(false);
@@ -69,9 +68,9 @@ const FilterBar = ({ leagues, countries, onFilterData }) => {
   function getCountryValues(e) {
     if (e.target.checked) {
       setSelectedCountries([...selectedCountries, e.target.value]);
+      onFilterEmpty(false);
     } else {
-      const filteredCountries = selectedCountries.filter(elt => elt !== e.target.value);
-      setSelectedCountries(filteredCountries);
+      setSelectedCountries(selectedCountries.filter(elt => elt !== e.target.value));
     }
   }
 
@@ -79,12 +78,13 @@ const FilterBar = ({ leagues, countries, onFilterData }) => {
   function getSportValues(e) {
     if (e.target.checked) {
       setSelectedSports([...selectedSports, e.target.value]);
+      onFilterEmpty(false);
     } else {
-      const filteredSports = selectedSports.filter(elt => elt !== e.target.value);
-      setSelectedSports(filteredSports);
+      setSelectedSports(selectedSports.filter(elt => elt !== e.target.value));
     }
   }
 
+  // Function to pass data to parent component and trigger a new API call with the selected filters
   useEffect(() => {
     if (selectedCountries.length === 0 && selectedSports.length > 0) {
       onFilterData(countriesArr, selectedSports);
@@ -92,6 +92,8 @@ const FilterBar = ({ leagues, countries, onFilterData }) => {
       onFilterData(selectedCountries, sportsSet);
     } else if (selectedCountries.length > 0 && selectedSports.length > 0) {
       onFilterData(selectedCountries, selectedSports);
+    } else if (selectedCountries.length === 0 && selectedSports.length === 0) {
+      onFilterEmpty(true);
     }
 
   }, [selectedCountries, selectedSports]);
@@ -126,7 +128,6 @@ const FilterBar = ({ leagues, countries, onFilterData }) => {
       </div>
       <div className='flex-container-filter'>
         <form className='select-container'>
-          {/* <div className='multiselect'> */}
           <div className='selectBox' onClick={() => showCheckboxes('countries')}>
             <select>
               <option>All Countries</option>
@@ -153,7 +154,6 @@ const FilterBar = ({ leagues, countries, onFilterData }) => {
               })}
             </div>}
           </div>
-          {/* </div> */}
         </form>
         <form className='select-container'>
           <div className='multiselect'>
