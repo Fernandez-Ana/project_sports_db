@@ -5,6 +5,7 @@ import { useState } from "react";
 import NavBar from "../../components/navbar/Navbar";
 // Styling
 import "./LeaguePage.scss";
+import logo from '../../assets/img/logo.svg';
 // Image
 import leagueImg from "../../assets/img/league_img.png";
 
@@ -43,6 +44,12 @@ const LeaguePage = () => {
   } else {
     return (
       <Fragment>
+        <div className='logoContainer'>
+					<img src={logo} alt='sports_db_logo' />
+					<Link to='/'>
+						<h1>Sports.db</h1>
+					</Link>
+				</div>
         <section className="leaguepage">
           <article>
             <img src={leagueImg} alt="leaguepage" />

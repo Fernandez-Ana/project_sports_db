@@ -27,12 +27,6 @@ const NavBar = (props) => {
 	return (
 		<Fragment>
 			<nav className='navContainer' id='nav'>
-				<div className='logoContainer'>
-					<img src={logo} alt='sports_db_logo' />
-					<Link to='/'>
-						<h1>Sports.db</h1>
-					</Link>
-				</div>
 				<div className={`searchContainer${isInputFocused ? " input-focused" : ""}`}>
 					<img src={search} alt='' />
 					<input
