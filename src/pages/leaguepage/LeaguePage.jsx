@@ -33,7 +33,7 @@ const LeaguePage = () => {
   if (isObjEmpty(teams).length === 0) {
     return <div>loading</div>;
   } else if (isObjEmpty(teams) === true) {
-    return <div><NavBar /><h1>Leider konnten wir nichts finden </h1></div>;
+    return <div><NavBar /><h1>Leider konnten wir nichts finden </h1></div>
   }
 
   else {
@@ -41,11 +41,11 @@ const LeaguePage = () => {
       <Fragment>
         <NavBar />
         <section className="leaguepage">
-        <article>
-        <img src={leagueImg} alt="leaguepage"/>
-        <h2>{leagueParams.leaguename}</h2>
-        <h3 className="sport-type">{leagueParams.strSport}</h3>
-        </article>
+          <article>
+            <img src={leagueImg} alt="leaguepage" />
+            <h2>{leagueParams.leaguename}</h2>
+            <h3 className="sport-type">{leagueParams.strSport}</h3>
+          </article>
           <ul>
             {teams.map((team) => {
               return (
