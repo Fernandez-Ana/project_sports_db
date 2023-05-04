@@ -63,14 +63,23 @@ const HomePage = () => {
     setFilterEmpty(boolean);
   }
 
+  // scroll function for arrow
+  const scroll = () => {
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  }
+
   // Render the homepage
   if (isObjEmpty(leagues) === true) {
     return (
-      
+
       <div className="main-fader" responsive-height-comments="true">
         <NavBar
-           leagueSearch={leagueSearch}
-           setLeagueSearch={setLeagueSearch}/>
+          leagueSearch={leagueSearch}
+          setLeagueSearch={setLeagueSearch} />
         <div className="loader">
           <svg className='loading-svg' viewBox="0 0 866 866" xmlns="http://www.w3.org/2000/svg">
             <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 164.83 151.5">
@@ -108,7 +117,8 @@ const HomePage = () => {
             <h2>Find your league</h2>
           </section>
         </div>
-        <HashLink smooth to='/#homeSection'>
+        {/* <HashLink smooth to='/#homeSection'> */}
+        <HashLink smooth onClick={scroll}>
           <svg className="red-arrow" width="72" height="102" viewBox="0 0 72 102" fill="none" xmlns="http://www.w3.org/2000/svg">
             <mask id="mask0_913_483" maskUnits="userSpaceOnUse" x="4" y="4" width="64" height="96">
               <path fillRule="evenodd" clipRule="evenodd" d="M67.9252 57.1896L35.769 4L4.00012 57.1895L26.5272 57.1895L26.5272 100H45.8984L45.8985 57.1895L67.9252 57.1896Z" fill="#C4C4C4" />
