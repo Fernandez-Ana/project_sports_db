@@ -13,13 +13,6 @@ const DetailsPage = () => {
 	const location = useLocation()
 	const detail = location.state
 
-
-	const websiteClick = () => {
-		if (detail.strWebsite === "" || detail.strFacebook === "" || detail.strTwitter === "" || detail.strInstagram === "" || detail.strYoutube === "") {
-			window.open('/no-website');
-		}
-	};
-
 	return (
 		<Fragment>
 			<NavBar />
@@ -86,15 +79,27 @@ const DetailsPage = () => {
 					</section>
 				</section>
 				<footer className='details_footer_section' >
-					<a href={'https://' + detail.strWebsite} target='_blank' className='underline' onClick={websiteClick}>WEBSITE</a>
-					<a href={'https://' + detail.strFacebook} target='_blank' className='underline' onClick={websiteClick}>FACEBOOK</a>
-					<a href={'https://' + detail.strTwitter} target='_blank' className='underline' onClick={websiteClick}>TWITTER</a>
-					<a href={'https://' + detail.strInstagram} target='_blank' className='underline' onClick={websiteClick}>INSTAGRAM</a>
-					<a href={'https://' + detail.strYoutube} target='_blank' className='underline' onClick={websiteClick}>YOUTUBE</a>
+
+					{detail.strWebsite !== "" && (
+						<a href={'https://' + detail.strWebsite} target='_blank' className='underline' >WEBSITE</a>
+					)}
+					{detail.strTwitter !== "" && (
+						<a href={'https://' + detail.strTwitter} target='_blank' className='underline' >TWITTER</a>
+					)}
+					{detail.strInstagram !== "" && (
+						<a href={'https://' + detail.strInstagram} target='_blank' className='underline' >INSTAGRAM</a>
+					)}
+					{detail.strYoutube !== "" && (
+						<a href={'https://' + detail.strYoutube} target='_blank' className='underline' >YOUTUBE</a>
+					)}
+					{detail.strFacebook !== "" && (
+						<a href={'https://' + detail.strFacebook} target='_blank' className='underline' >FACEBOOK</a>
+					)}
 				</footer>
 			</section>
 		</Fragment>
 	)
+
 }
 
 export default DetailsPage;
