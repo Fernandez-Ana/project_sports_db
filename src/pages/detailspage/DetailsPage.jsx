@@ -104,7 +104,6 @@ const DetailsPage = () => {
 			</section>
 		</Fragment>
 	)
-
 }
 
 export default DetailsPage;
