@@ -53,7 +53,6 @@ const HomePage = () => {
   // Filter the leagues by country and sport and set the filtered leagues state
   const handleFilterData = (selectedCountries, selectedSports) => {
     const filteredLeagues = leagues.filter(league => {
-      console.log(league);
       return selectedCountries.includes(league.strCountry) && selectedSports.includes(league.strSport);
     });
     setFilteredLeagues(filteredLeagues);
@@ -67,7 +66,11 @@ const HomePage = () => {
   // Render the homepage
   if (isObjEmpty(leagues) === true) {
     return (
+      
       <div className="main-fader" responsive-height-comments="true">
+        <NavBar
+           leagueSearch={leagueSearch}
+           setLeagueSearch={setLeagueSearch}/>
         <div className="loader">
           <svg className='loading-svg' viewBox="0 0 866 866" xmlns="http://www.w3.org/2000/svg">
             <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 164.83 151.5">
@@ -89,6 +92,7 @@ const HomePage = () => {
               <path className="bb-9" fill="#E83539" d="M117.35,125c5.58-2.32,16.9-13.84,18.1-19.2-2.41,1.46-5.18,2.36-6.78,4.23-4.21,5-7.89,10.37-11.32,15Z" />
             </svg>
           </svg>
+          <span className="loading-text">Still faster than Windows update.</span>
         </div>
       </div>
     )
@@ -105,9 +109,9 @@ const HomePage = () => {
           </section>
         </div>
         <HashLink smooth to='/#homeSection'>
-          <svg width="72" height="102" viewBox="0 0 72 102" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg className="red-arrow" width="72" height="102" viewBox="0 0 72 102" fill="none" xmlns="http://www.w3.org/2000/svg">
             <mask id="mask0_913_483" maskUnits="userSpaceOnUse" x="4" y="4" width="64" height="96">
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M67.9252 57.1896L35.769 4L4.00012 57.1895L26.5272 57.1895L26.5272 100H45.8984L45.8985 57.1895L67.9252 57.1896Z" fill="#C4C4C4" />
+              <path fillRule="evenodd" clipRule="evenodd" d="M67.9252 57.1896L35.769 4L4.00012 57.1895L26.5272 57.1895L26.5272 100H45.8984L45.8985 57.1895L67.9252 57.1896Z" fill="#C4C4C4" />
             </mask>
             <g mask="url(#mask0_913_483)">
               <rect width="64" height="96" transform="matrix(1 0 0 -1 4 100)" fill="none" />

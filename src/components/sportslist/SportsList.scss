@@ -43,6 +43,17 @@
 }
 
 
-// @media only screen and (max-width: 415px) {
-  
-// }
+@media only screen and (max-width: 415px) {
+  .league-section {
+    margin: 0 15px;
+  }
+  .league-link-league {
+    font-size:2rem;
+    font-weight: 600;
+  }
+  .league-link-sport {
+    font-size: 1.3rem;
+    font-weight: 200;
+    padding-left: 0.1rem;
+  }
+}

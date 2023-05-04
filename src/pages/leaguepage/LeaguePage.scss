@@ -17,17 +17,30 @@
             position: sticky;
             left: 12vw;
         }
-        h2 {
-            color: #E83539;
-            font-size: 12.4rem;
-            font-weight: 700;
-            width: 100%;
-            text-transform: uppercase;
-            margin-right: 48px;
+        .font-container {
+            display: flex;
+            flex-direction: column;
             text-align: right;
-            z-index: 2;
-            white-space: wrap;
-        } 
+            margin: 0 55px 0 0;
+            h2 {
+                color: #E83539;
+                font-size: 12.4rem;
+                font-weight: 700;
+                width: 100%;
+                text-transform: uppercase;
+                margin-right: 48px;
+                text-align: right;
+                z-index: 2;
+                white-space: wrap;
+            } 
+            h3 {
+                display: inline-block;
+                font-size: 6.5rem;
+                font-weight: 600;
+                z-index: 2;
+                text-transform: uppercase;
+            }
+        }
     }
     ul {
         list-style: none;
@@ -63,14 +76,23 @@
         article {
             img {
                 height: 60vh;
+                left: 1rem;
             }
-            h2 {
-                font-size: 4.5rem;
-            } 
+            .font-container {
+                margin: 0 15px 0 0;
+                h2 {
+                    font-size: 4.5rem;
+                } 
+                h3 {
+                    font-size: 2.2rem;
+                }
+            }
         }
         ul {
             a {
                 font-size: 2rem;
+                padding: 1rem;
+                padding-left: 0.1rem;
                 }
             .stadium {
                 font-size: 1.1rem;
