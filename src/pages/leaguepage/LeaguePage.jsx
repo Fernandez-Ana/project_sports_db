@@ -25,6 +25,9 @@ const LeaguePage = () => {
       });
   }, [leagueParams.leaguename, leagueParams.strSport]);
 
+
+  console.log(leagueParams.strSport)
+  console.log(leagueParams.leaguename)
   // Checking if object is empty for async fetch
   const isObjEmpty = (teams) => {
     return teams ? Object.keys(teams).length === 0 : true;
@@ -43,8 +46,10 @@ const LeaguePage = () => {
         <section className="leaguepage">
         <article>
         <img src={leagueImg} alt="leaguepage"/>
+        <div className="font-container">
         <h2>{leagueParams.leaguename}</h2>
-        <h3 className="sport-type">{leagueParams.strSport}</h3>
+        <h3 className="sport-type">{teams[8].strSport}</h3>
+        </div>
         </article>
           <ul>
             {teams.map((team) => {

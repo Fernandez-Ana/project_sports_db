@@ -18,23 +18,28 @@
     // padding: 15vh 0;
 }
 
-svg {
+.loading-text {
+  font-size: 3rem;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+}
+
+.red-arrow {
     position: fixed;
     bottom: 5vh;
     left: 91%;
 }
 
-svg rect {
-    transition: all .4s ease;
-}
-
-svg rect {
+.red-arrow rect {
     fill: rgb(15, 15, 15);
-    
+    transform: translateY(100%);
+    transition: transform .4s ease-in-out;
 }
 
-svg:hover rect{
+.red-arrow:hover rect{
     fill: #E83539;
+    transform: translateY(0);
 }
 
 main-loader{
@@ -95,4 +100,26 @@ main-loader{
   0%     { opacity: .1; }
   30%    { opacity: .8; }
   100%   { opacity: .1; }
+}
+
+
+
+@media only screen and (max-width:415px) {
+    .homepage {
+      img {
+        width: 90vw;
+      }
+      h2 {
+        font-size: 4.8rem;
+      }
+    }
+    .loading-text {
+      font-size: 3rem;
+      color: #fff;
+      text-align: center;
+    }
+    .red-arrow {
+      bottom: 2.5vh;
+      left: 77%;
+    }
 }
