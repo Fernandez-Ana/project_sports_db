@@ -43,8 +43,8 @@ const SportsList = ({ leagues, filteredLeagues, leagueSearch, filterEmpty }) => 
     <Fragment>
       {Object.entries(leaguesToRender).map(([letter, leaguesForLetter]) => (
         <section className="league-section" key={letter}>
-          <h2>{letter}</h2>
-          <ul>
+          <h2 className="bigLetters">{letter}</h2>
+          <ul className="listContainer">
             {leaguesForLetter.map((league) => (
               <li key={league.idLeague} className="list-element">
                 <Link to={`/${league.strLeague}`} className="league-link">

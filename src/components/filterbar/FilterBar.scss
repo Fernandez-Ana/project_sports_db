@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   height: 23rem;
-  padding-block-start: 1.4rem;
+  padding-block-start: 4rem;
   margin-right: 60px;
 }
 
@@ -129,10 +129,12 @@ input[type="checkbox"]  {
 @media only screen and (max-width: 415px) {
     .flex-container {
     display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
     justify-content: space-between;
-    height: 45rem;
+    height: 38rem;
     padding-block-start: 1.4rem;
-    border: 1px solid gold;
+    // border: 1px solid gold;
     width: 100%;
   }
 
@@ -147,11 +149,9 @@ input[type="checkbox"]  {
     padding: 5px;
   }
 
-
-  // Position der Dropdown Menüs -- Column oder Standard?? --
   .flex-container-filter {
     display: flex;
-    gap: 5.5rem;
+    gap: 1.5rem;
     height: 90px;
   }
 
@@ -160,14 +160,13 @@ input[type="checkbox"]  {
     min-width: 15.6rem;
     left: 10px;
     height: 3.2rem;
-    border: 1px solid red;
-   
+    // border: 1px solid blue;
   }
 
   .selectBox {
     position: relative;
     border: 0.2rem solid white;
-    width: 35vw;
+    width: 45vw;
   }
 
   .selectBox:hover {
@@ -186,15 +185,13 @@ input[type="checkbox"]  {
     width: 10vw;
   }
 
-// Checkbox Container 
+// Checkbox Container
   .checkboxes {
     color: white;
     background-color: black;
     height: 15.6rem;
     overflow-y: scroll;
   }
-
-
 
   .checkboxes-countries {
     width: 100%;
@@ -206,8 +203,6 @@ input[type="checkbox"]  {
     font-size: 1.4rem;
     padding-left: 0.2rem;
   }
-
-  
 
   label {
     display: flex;

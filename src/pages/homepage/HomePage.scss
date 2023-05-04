@@ -1,3 +1,13 @@
+.flex-container-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logoContainer {
+  margin-left: 2rem;
+}
+
 .homepage {
     display: flex;
     align-items: center;
@@ -30,7 +40,7 @@
     position: fixed;
     bottom: 5vh;
     left: 91%;
-    z-index: 3;
+    z-index: 1;
 }
 
 .red-arrow rect {
@@ -42,6 +52,7 @@
 .red-arrow:hover rect{
     fill: #E83539;
     transform: translateY(0);
+    transform: translateY(2px);
 }
 
 main-loader{
