@@ -30,7 +30,6 @@
 
 .flex-container-filter {
   display: flex;
-  flex-direction: column;
   gap: 2rem;
 }
 
@@ -168,7 +167,7 @@ input[type="checkbox"]  {
   .selectBox {
     position: relative;
     border: 0.2rem solid white;
-    width: 40vw;
+    width: 35vw;
   }
 
   .selectBox:hover {
@@ -179,7 +178,6 @@ input[type="checkbox"]  {
   .selectBox select {
     display: block;
     width: 100%;
-    border: 1px solid green;
   }
 
   .selecting {
@@ -228,6 +226,9 @@ input[type="checkbox"]  {
   }
 
   .list-element-dropdown {
+    display: flex;
+
+    flex-wrap: wrap;
     list-style-type: none;
     border: 0.1rem solid #fff;
     padding: .23rem;

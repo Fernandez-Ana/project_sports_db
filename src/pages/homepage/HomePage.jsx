@@ -67,7 +67,7 @@ const HomePage = () => {
   if (isObjEmpty(leagues) === true) {
     return (
       
-      <div className="main-fader" responsive-height-comments="true">
+      <div className="main-fader" responsive-height-comments="true" style={{ height: "100vh" }}>
         <NavBar
            leagueSearch={leagueSearch}
            setLeagueSearch={setLeagueSearch}/>
