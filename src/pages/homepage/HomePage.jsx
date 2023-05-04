@@ -66,11 +66,11 @@ const HomePage = () => {
   // Render the homepage
   if (isObjEmpty(leagues) === true) {
     return (
-      
+
       <div className="main-fader" responsive-height-comments="true">
         <NavBar
-           leagueSearch={leagueSearch}
-           setLeagueSearch={setLeagueSearch}/>
+          leagueSearch={leagueSearch}
+          setLeagueSearch={setLeagueSearch} />
         <div className="loader">
           <svg className='loading-svg' viewBox="0 0 866 866" xmlns="http://www.w3.org/2000/svg">
             <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 164.83 151.5">

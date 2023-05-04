@@ -43,7 +43,6 @@ const LeaguePage = () => {
   } else {
     return (
       <Fragment>
-        <NavBar />
         <section className="leaguepage">
           <article>
             <img src={leagueImg} alt="leaguepage" />

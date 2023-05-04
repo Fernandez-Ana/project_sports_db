@@ -15,7 +15,6 @@ const DetailsPage = () => {
 
 	return (
 		<Fragment>
-			<NavBar />
 			<section className='detailspage'>
 				<h2>{detail.strTeam.toUpperCase()}</h2>
 				<section className='stadium_section'>

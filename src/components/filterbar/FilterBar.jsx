@@ -132,6 +132,8 @@ const FilterBar = ({ leagues, onFilterData, onFilterEmpty }) => {
     };
   }, [countriesExpanded, sportsExpanded]);
 
+
+
   return (
     <div className='flex-container'>
       <div className='flex-container-buttons'>
