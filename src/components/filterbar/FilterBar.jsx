@@ -98,22 +98,28 @@ const FilterBar = ({ leagues, onFilterData, onFilterEmpty }) => {
     }
   }, [selectedCountries, selectedSports]);
 
-// Function to close dropdown menus when clicking outside of them
+  // Function to close dropdown menus when clicking outside of them
   const countriesWrapperRef = useRef(null);
   const sportsWrapperRef = useRef(null);
 
   const handleClickOutside = (event) => {
+
+    const isSelectingElement = event.target.classList.contains("overSelect") ||
+    event.target.parentNode.classList.contains("overSelect");
+
     if (
       countriesExpanded &&
       countriesWrapperRef.current &&
-      !countriesWrapperRef.current.contains(event.target)
+      !countriesWrapperRef.current.contains(event.target) &&
+      !isSelectingElement
     ) {
       showCheckboxes('countries');
     }
     if (
       sportsExpanded &&
       sportsWrapperRef.current &&
-      !sportsWrapperRef.current.contains(event.target)
+      !sportsWrapperRef.current.contains(event.target) &&
+      !isSelectingElement
     ) {
       showCheckboxes('sports');
     }
@@ -160,7 +166,7 @@ const FilterBar = ({ leagues, onFilterData, onFilterEmpty }) => {
       </div>
       <div className='flex-container-filter'>
         <form className='select-container'>
-          <div className='selectBox' onClick={() => showCheckboxes('countries')}>
+          <div className='selectBox' onClick={(event) => showCheckboxes('countries')}>
             <select className='selecting'>
               <option>All Countries</option>
             </select>
