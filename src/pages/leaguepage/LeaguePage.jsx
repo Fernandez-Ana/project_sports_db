@@ -71,11 +71,11 @@ const LeaguePage = () => {
     return (
       <Fragment>
         <div className='logoContainer'>
-					<img src={logo} alt='sports_db_logo' />
-					<Link to='/'>
-						<h1>Sports.db</h1>
-					</Link>
-				</div>
+          <img src={logo} alt='sports_db_logo' />
+          <Link to='/'>
+            <h1>Sports.db</h1>
+          </Link>
+        </div>
         <section className="leaguepage">
           <article>
             <img src={leagueImg} alt="leaguepage" />
@@ -88,7 +88,7 @@ const LeaguePage = () => {
             {teams.map((team) => {
               return (
                 <li key={team.idTeam}>
-                  <Link to={`/${team.strTeam}/detailspage`} state={team}>
+                  <Link to={`/${team.strTeam}/detailspage`} state={team} onClick={() => window.scrollTo(0, 0)}>
                     {team.strTeam}
                     <span className="stadium">{team.strStadiumLocation}</span>
                   </Link>

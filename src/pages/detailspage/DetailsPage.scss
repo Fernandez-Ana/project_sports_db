@@ -195,7 +195,6 @@
 
         h2 {
             font-size: 4.5rem;
-            margin-top: -10rem;
         }
 
         h3 {
@@ -211,14 +210,16 @@
         img {
             width: 35rem;
             height: 20rem;
-            margin-top: -20rem;
+            margin-top: -5rem;
+            margin-left: -25rem;
         }
     }
 
     .stadium_details {
-        padding-top: 50rem;
+        padding-top: 45rem;
         margin-left: 2rem;
-        height: 70vh;
+        padding-left: 11rem;
+        height: 75vh;
 
         h3 {
             width: 100%;
@@ -228,6 +229,7 @@
     .team_description_section {
         height: 0vh;
         margin: 0;
+        margin-bottom: 15rem;
 
         div:nth-of-type(1) {
             p {
@@ -249,7 +251,9 @@
 
     .badge_img {
         img {
-            margin-left: 45rem;
+            // margin-left: 45rem;
+            margin-top: 20rem;
+            width: 30%;
         }
     }
 
@@ -281,5 +285,16 @@
         width: 100%;
         text-align: left;
         margin-top: 3rem;
+    }
+
+    .details_footer_section {
+        padding: 0;
+        margin-top: 5rem;
+        align-items: center;
+        margin-bottom: 2rem;
+
+        a {
+            font-size: 2.2rem;
+        }
     }
 }
