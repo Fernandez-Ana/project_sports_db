@@ -16,7 +16,12 @@ const DetailsPage = () => {
 
   return (
     <Fragment>
-      <NavBar />
+      <div className='logoContainer'>
+        <img src={logo} alt='sports_db_logo' />
+        <Link to='/'>
+          <h1>Sports.db</h1>
+        </Link>
+      </div>
       <section className='detailspage'>
         <h2>{detail.strTeam === detail.strTeam.toUpperCase() ? detail.strTeam : detail.strTeam.toUpperCase()}</h2>
         <section className='stadium_section'>
