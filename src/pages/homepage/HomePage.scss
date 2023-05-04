@@ -5,6 +5,7 @@
 }
 
 .homepage img {
+    margin-top: 40px;
     width: 100%;
 }
 
@@ -12,7 +13,7 @@
     color: #E83539;
     font-size: 16rem;
     text-transform: uppercase;
-    margin: 0vh 3vw 0 -50%;
+    margin: 1.5vh 3vw 0 -50%;
     text-align: right;
     width: 100%;
     // padding: 15vh 0;
@@ -46,14 +47,14 @@
 
 main-loader{
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.75);
+    background-color: rgb(15, 15, 15);
 }
 
 .main-fader{
     width:100%;
     height: 100vh;
     position: absolute;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgb(15, 15, 15);
     .loader {
     position: fixed;
     top: 50%;

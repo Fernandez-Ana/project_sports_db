@@ -30,6 +30,7 @@
 
 .flex-container-filter {
   display: flex;
+  flex-direction: column;
   gap: 2rem;
 }
 
@@ -99,7 +100,7 @@ input[type="checkbox"]  {
 .list-element-dropdown {
   list-style-type: none;
   border: 0.2rem solid #fff;
-  padding: .43rem;
+  padding: .42rem;
   font-size: 1.3rem;
 }
 
@@ -130,13 +131,19 @@ input[type="checkbox"]  {
     .flex-container {
     display: flex;
     justify-content: space-between;
-    height: 23rem;
+    height: 45rem;
     padding-block-start: 1.4rem;
-    // margin-right: 60px;
+    border: 1px solid gold;
+    width: 100%;
+  }
+
+  .flex-container-buttons {
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
   }
 
   .flex-container-selected-elements {
-    display: flex;
     width: 10rem;
     padding: 5px;
   }
@@ -153,7 +160,9 @@ input[type="checkbox"]  {
   .select-container {
     min-width: 15.6rem;
     left: 10px;
-    height: 30px;
+    height: 3.2rem;
+    border: 1px solid red;
+   
   }
 
   .selectBox {
@@ -170,6 +179,7 @@ input[type="checkbox"]  {
   .selectBox select {
     display: block;
     width: 100%;
+    border: 1px solid green;
   }
 
   .selecting {
@@ -234,13 +244,14 @@ input[type="checkbox"]  {
   }
 
   .selected-element {
-    display: block;
+    display: flex;
     background-color: black;
     color: white;
     border: 0.1rem solid white;
     height: fit-content;
     padding: 0.3rem;
     letter-spacing: 0.025rem;
+    width: 30vw;
   }
 
 }
