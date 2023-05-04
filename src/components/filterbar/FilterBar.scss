@@ -6,10 +6,26 @@
   margin-right: 60px;
 }
 
-.flex-container-selected-elements {
+.flex-container-buttons {
+  display: flex;
+  flex-direction: column;
+  max-width: 40%;
+}
+
+.flex-container-selected-elements-countries {
   display: flex;
   gap: 0.5rem;
   padding: 10px;
+  flex-wrap: wrap;
+  height: fit-content;
+}
+
+.flex-container-selected-elements-sports {
+  display: flex;
+  gap: 0.5rem;
+  padding: 10px;
+  flex-wrap: wrap;
+  height: fit-content;
 }
 
 .flex-container-filter {
@@ -82,12 +98,12 @@ input[type="checkbox"]  {
 
 .list-element-dropdown {
   list-style-type: none;
-  border: 0.1rem solid #fff;
+  border: 0.2rem solid #fff;
   padding: .43rem;
   font-size: 1.3rem;
 }
 
-.list-element:hover {
+.list-element-dropdown:hover {
   cursor: pointer;
 }
 
@@ -100,7 +116,7 @@ input[type="checkbox"]  {
   align-items: center;
   background-color: black;
   color: white;
-  border: 0.1rem solid white;
+  border: 0.2rem solid white;
   height: fit-content;
   padding: 0.3rem;
   letter-spacing: 0.025rem;

@@ -6,13 +6,14 @@ import NavBar from "../../components/navbar/Navbar";
 // Styling
 import "./LeaguePage.scss";
 // Image
-import leagueImg from '../../assets/img/league_img.png'
+import leagueImg from "../../assets/img/league_img.png";
 
 const LeaguePage = () => {
   // Getting league name from url
-  let leagueParams = useParams();
+  const leagueParams = useParams();
   // Setting state for data fetch
   const [teams, setTeams] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   // Fetching data from API for display teams and detail page
   useEffect(() => {
@@ -22,35 +23,35 @@ const LeaguePage = () => {
       .then((res) => res.json())
       .then((teams) => {
         setTeams(teams.teams);
+        setIsLoading(false);
       });
   }, [leagueParams.leaguename, leagueParams.strSport]);
 
-
-  console.log(leagueParams.strSport)
-  console.log(leagueParams.leaguename)
-  // Checking if object is empty for async fetch
   const isObjEmpty = (teams) => {
     return teams ? Object.keys(teams).length === 0 : true;
   };
 
-  if (isObjEmpty(teams).length === 0) {
+  if (isLoading) {
     return <div>loading</div>;
-  } else if (isObjEmpty(teams) === true) {
-    return <div><NavBar /><h1>Leider konnten wir nichts finden </h1></div>;
-  }
-
-  else {
+  } else if (isObjEmpty(teams)) {
+    return (
+      <div>
+        <NavBar />
+        <h1>Leider konnten wir nichts finden </h1>
+      </div>
+    );
+  } else {
     return (
       <Fragment>
         <NavBar />
         <section className="leaguepage">
-        <article>
-        <img src={leagueImg} alt="leaguepage"/>
-        <div className="font-container">
-        <h2>{leagueParams.leaguename}</h2>
-        <h3 className="sport-type">{teams[8].strSport}</h3>
-        </div>
-        </article>
+          <article>
+            <img src={leagueImg} alt="leaguepage" />
+            <div className="font-container">
+              <h2>{leagueParams.leaguename}</h2>
+              <h3 className="sport-type">{teams[0].strSport}</h3>
+            </div>
+          </article>
           <ul>
             {teams.map((team) => {
               return (
