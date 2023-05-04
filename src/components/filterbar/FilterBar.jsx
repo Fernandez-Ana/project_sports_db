@@ -96,7 +96,6 @@ const FilterBar = ({ leagues, onFilterData, onFilterEmpty }) => {
     } else if (selectedCountries.length === 0 && selectedSports.length === 0) {
       onFilterEmpty(true);
     }
-
   }, [selectedCountries, selectedSports]);
 
 // Function to close dropdown menus when clicking outside of them
@@ -129,31 +128,35 @@ const FilterBar = ({ leagues, onFilterData, onFilterEmpty }) => {
 
   return (
     <div className='flex-container'>
-      <div className='flex-container-selected-elements'>
-        {selectedCountries.length > 0 && selectedCountries.map((elt) => {
-          return (
-            <button
-              type='button'
-              className='selected-element'
-              value={elt}
-              key={elt}
-              onClick={closeButton}>
-              <FiX size={16} style={{ pointerEvents: 'none' }} />{elt}
-            </button>
-          )
-        })}
-        {selectedSports.length > 0 && selectedSports.map((elt) => {
-          return (
-            <button
-              type='button'
-              className='selected-element'
-              value={elt}
-              key={elt}
-              onClick={closeButton}>
-              <FiX size={16} style={{ pointerEvents: 'none' }} />{elt}
-            </button>
-          )
-        })}
+      <div className='flex-container-buttons'>
+        <div className='flex-container-selected-elements-countries'>
+          {selectedCountries.length > 0 && selectedCountries.map((elt) => {
+            return (
+              <button
+                type='button'
+                className='selected-element'
+                value={elt}
+                key={elt}
+                onClick={closeButton}>
+                <FiX size={16} style={{ pointerEvents: 'none' }} />{elt}
+              </button>
+            )
+          })}
+        </div>
+        <div className='flex-container-selected-elements-sports'>
+          {selectedSports.length > 0 && selectedSports.map((elt) => {
+            return (
+              <button
+                type='button'
+                className='selected-element'
+                value={elt}
+                key={elt}
+                onClick={closeButton}>
+                <FiX size={16} style={{ pointerEvents: 'none' }} />{elt}
+              </button>
+            )
+          })}
+        </div>
       </div>
       <div className='flex-container-filter'>
         <form className='select-container'>
