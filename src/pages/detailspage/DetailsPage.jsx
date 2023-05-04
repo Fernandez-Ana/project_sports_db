@@ -1,11 +1,12 @@
 // Infrastructure
 import { Fragment } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import NavBar from '../../components/navbar/Navbar';
 import randomStadiumImgUrl from '../../assets/img/random_stadium.png'
 
 // Styling
 import './DetailsPage.scss';
+import logo from '../../assets/img/logo.svg';
 
 const DetailsPage = () => {
 
@@ -15,7 +16,12 @@ const DetailsPage = () => {
 
 	return (
 		<Fragment>
-			<NavBar />
+      <div className='logoContainer'>
+					<img src={logo} alt='sports_db_logo' />
+					<Link to='/'>
+						<h1>Sports.db</h1>
+					</Link>
+				</div>
 			<section className='detailspage'>
 				<h2>{detail.strTeam.toUpperCase()}</h2>
 				<section className='stadium_section'>
@@ -79,7 +85,6 @@ const DetailsPage = () => {
 					</section>
 				</section>
 				<footer className='details_footer_section' >
-
 					{detail.strWebsite !== "" && (
 						<a href={'https://' + detail.strWebsite} target='_blank' className='underline' >WEBSITE</a>
 					)}

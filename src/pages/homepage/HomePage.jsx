@@ -1,6 +1,7 @@
 // Infrastructure
 import { Fragment } from "react";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { HashLink } from 'react-router-hash-link'
 // Components
 import SportsList from "../../components/sportslist/SportsList";
@@ -8,7 +9,8 @@ import NavBar from "../../components/navbar/Navbar";
 import FilterBar from "../../components/filterbar/FilterBar";
 // Styling
 import "./HomePage.scss";
-import home_img from '../../assets/img/home_img.png'
+import home_img from '../../assets/img/home_img.png';
+import logo from '../../assets/img/logo.svg';
 
 const HomePage = () => {
   // States for all leagues, all countries data from API, filtered leagues and search input
@@ -75,11 +77,7 @@ const HomePage = () => {
   // Render the homepage
   if (isObjEmpty(leagues) === true) {
     return (
-
       <div className="main-fader" responsive-height-comments="true">
-        <NavBar
-          leagueSearch={leagueSearch}
-          setLeagueSearch={setLeagueSearch} />
         <div className="loader">
           <svg className='loading-svg' viewBox="0 0 866 866" xmlns="http://www.w3.org/2000/svg">
             <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 164.83 151.5">
@@ -108,9 +106,17 @@ const HomePage = () => {
   } else {
     return (
       <Fragment>
-        <NavBar
-          leagueSearch={leagueSearch}
-          setLeagueSearch={setLeagueSearch} />
+        <div className='flex-container-header'>
+          <div className='logoContainer'>
+            <img src={logo} alt='sports_db_logo' />
+            <Link to='/'>
+              <h1>Sports.db</h1>
+            </Link>
+          </div>
+          <NavBar
+            leagueSearch={leagueSearch}
+            setLeagueSearch={setLeagueSearch} />
+        </div>
         <div>
           <section className="homepage" id='homeSection'>
             <img src={home_img} alt='baseball field' />
