@@ -1,5 +1,5 @@
 // Infrastructure
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
 
 // Styling
@@ -9,9 +9,20 @@ import search from '../../assets/img/search.svg';
 
 const NavBar = (props) => {
 
+  const [isInputFocused, setIsInputFocused] = useState(false);
+
 	const handleChange = (event) => {
 		props.setLeagueSearch(event.target.value)
 	};
+
+  const handleFocusBlur = (event) => {
+    console.log(event.type);
+    if (event.type === "focus") {
+      setIsInputFocused(true);
+    } else if (event.type === "blur" && event.target.value === "") {
+      setIsInputFocused(false);
+    }
+  };
 
 	return (
 		<Fragment>
@@ -22,9 +33,15 @@ const NavBar = (props) => {
 						<h1>Sports.db</h1>
 					</Link>
 				</div>
-				<div className='searchContainer'>
+				<div className={`searchContainer${isInputFocused ? " input-focused" : ""}`}>
 					<img src={search} alt='' />
-					<input type='text' name='' id='' onChange={handleChange} />
+					<input
+            type='text'
+            name=''
+            id=''
+            onChange={handleChange}
+            onFocus={handleFocusBlur}
+            onBlur={handleFocusBlur} />
 				</div>
 			</nav>
 		</Fragment>
