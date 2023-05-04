@@ -44,6 +44,8 @@
     img {
         width: 65rem;
         height: 40rem;
+        -webkit-filter: grayscale(1);
+        filter: grayscale(1);
     }
 }
 
@@ -185,4 +187,35 @@
 .underline:hover {
     background-position: 0 100%;
     background-size: 100% 15px;
+}
+
+// Mobile
+@media only screen and (max-width: 415px) {
+    .detailspage {
+        margin: 8rem 1rem 0 1rem;
+
+
+        h2 {
+            font-size: 4.5rem;
+        }
+    }
+
+    .stadium_img {
+
+        img {
+            width: 60rem;
+            height: 30rem;
+            margin-top: -30rem;
+        }
+    }
+
+    .stadium_details {
+        padding-top: 60rem;
+        width: 50rem;
+        // display: flex;
+
+        h3 {
+            font-size: 3rem;
+        }
+    }
 }

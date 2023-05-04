@@ -13,6 +13,7 @@ const DetailsPage = () => {
   const location = useLocation()
   const detail = location.state
 
+  console.log(detail.strWebsite);
 
   const websiteClick = () => {
     if (detail.strWebsite === "" || detail.strFacebook === "" || detail.strTwitter === "" || detail.strInstagram === "" || detail.strYoutube === "") {
@@ -27,8 +28,10 @@ const DetailsPage = () => {
         <h2>{detail.strTeam.toUpperCase()}</h2>
         <section className='stadium_section'>
           <div className='stadium_details'>
-            <h3>{detail.strCountry.toUpperCase()}</h3>
-            <p>Country</p>
+            <div>
+              <h3>{detail.strCountry.toUpperCase()}</h3>
+              <p>Country</p>
+            </div>
             <h3>{detail.strStadiumLocation.toUpperCase().slice(0, 16)}</h3>
             <p>Location</p>
             <h3>{detail.intFormedYear}</h3>
