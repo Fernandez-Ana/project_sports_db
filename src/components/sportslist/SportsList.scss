@@ -10,6 +10,7 @@
 .list-element {
   list-style-type: none;
   margin-block: .75rem;
+  line-height: 2.8rem;
 }
 
 .bigLetters {
@@ -67,5 +68,13 @@
     font-size: 1.3rem;
     font-weight: 200;
     padding-left: 0.1rem;
+  }
+  .listContainer {
+    margin-left: 19%;
+    margin-right: 2%;
+    margin-top: -13vh;
+  }
+  .bigLetters {
+    font-size: 15rem;
   }
 }
