@@ -1,11 +1,12 @@
 // Infrastructure
 import { Fragment } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import NavBar from '../../components/navbar/Navbar';
 import randomStadiumImgUrl from '../../assets/img/random_stadium.png'
 
 // Styling
 import './DetailsPage.scss';
+import logo from '../../assets/img/logo.svg';
 
 const DetailsPage = () => {
 

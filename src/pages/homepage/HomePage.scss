@@ -1,3 +1,13 @@
+.flex-container-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logoContainer {
+  margin-left: 2rem;
+}
+
 .homepage {
     display: flex;
     align-items: center;
@@ -5,6 +15,7 @@
 }
 
 .homepage img {
+    margin-top: 40px;
     width: 100%;
 }
 
@@ -12,7 +23,7 @@
     color: #E83539;
     font-size: 16rem;
     text-transform: uppercase;
-    margin: 0vh 3vw 0 -50%;
+    margin: 1.4vh 3vw 0 -50%;
     text-align: right;
     width: 100%;
     // padding: 15vh 0;
@@ -29,6 +40,7 @@
     position: fixed;
     bottom: 5vh;
     left: 91%;
+    z-index: 1;
 }
 
 .red-arrow rect {
@@ -40,18 +52,19 @@
 .red-arrow:hover rect{
     fill: #E83539;
     transform: translateY(0);
+    transform: translateY(2px);
 }
 
 main-loader{
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.75);
+    background-color: rgb(15, 15, 15);
 }
 
 .main-fader{
     width:100%;
     height: 100vh;
     position: absolute;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgb(15, 15, 15);
     .loader {
     position: fixed;
     top: 50%;

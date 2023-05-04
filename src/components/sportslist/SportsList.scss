@@ -2,9 +2,22 @@
   margin: 0 40px;
 }
 
+.listContainer {
+  margin-left: 11%;
+  margin-top: -19vh;
+}
+
 .list-element {
   list-style-type: none;
   margin-block: .75rem;
+  line-height: 2.8rem;
+}
+
+.bigLetters {
+  font-size: 30rem;
+  color: rgb(15, 15, 15);
+  background-color:  rgb(15, 15, 15);
+  text-shadow: -1px -1px 0 #E83539, 1px -1px 0 #E83539, -1px 1px 0 #E83539, 1px 1px 0 #E83539;
 }
 
 .league-link {
@@ -32,7 +45,8 @@
   font-size:3.5rem;
   text-transform: uppercase;
   font-weight: 800;
-  // margin-left: 50px;
+  padding-bottom: 30vh;
+  overflow-y: scroll;
 }
 
 .league-link-sport {
@@ -55,5 +69,13 @@
     font-size: 1.3rem;
     font-weight: 200;
     padding-left: 0.1rem;
+  }
+  .listContainer {
+    margin-left: 19%;
+    margin-right: 2%;
+    margin-top: -13vh;
+  }
+  .bigLetters {
+    font-size: 15rem;
   }
 }
