@@ -8,6 +8,7 @@ import DetailsPage from "./pages/detailspage/DetailsPage";
 // Styling
 import "./App.scss";
 
+
 function App() {
   return (
     <Fragment>
